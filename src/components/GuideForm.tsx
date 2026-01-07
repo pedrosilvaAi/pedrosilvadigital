@@ -11,8 +11,8 @@ import {
 } from "@/components/ui/select";
 import { CheckCircle2, Send } from "lucide-react";
 
-// Placeholder: substituir pelo URL do webhook do n8n
-const N8N_WEBHOOK_URL = "{N8N_WEBHOOK_URL}";
+// URL do webhook (n8n, Make, Zapier, etc.)
+const WEBHOOK_URL = "https://n8n.pedrosilvadigital.pt/webhook/leads-landing-page";
 const CALENDLY_URL = "https://calendly.com/pmgs5-ai/chamada-inicial?month=2026-01";
 
 const businessTypes = [
@@ -67,12 +67,13 @@ export function GuideForm() {
     setIsSubmitting(true);
 
     try {
-      // Enviar para webhook n8n
-      const response = await fetch(N8N_WEBHOOK_URL, {
+      // Enviar para webhook externo (n8n, Make, Zapier, etc.)
+      await fetch(WEBHOOK_URL, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
+        mode: "no-cors", // Permite envio sem CORS
         body: JSON.stringify({
           nome: formData.nome,
           email: formData.email,
@@ -80,18 +81,15 @@ export function GuideForm() {
           prioridade_90_dias: formData.prioridade,
           maior_gargalo: formData.gargalo,
           timestamp: new Date().toISOString(),
+          source: window.location.origin,
         }),
       });
 
-      if (!response.ok) {
-        throw new Error("Erro ao enviar formulário");
-      }
-
+      // Com no-cors não conseguimos verificar a resposta, assumimos sucesso
       setIsSuccess(true);
     } catch (err) {
-      // Para demonstração, mostrar sucesso mesmo sem webhook configurado
-      console.log("Webhook não configurado, mostrando sucesso para demonstração");
-      setIsSuccess(true);
+      console.error("Erro ao enviar para webhook:", err);
+      setError("Ocorreu um erro. Por favor tenta novamente.");
     } finally {
       setIsSubmitting(false);
     }
