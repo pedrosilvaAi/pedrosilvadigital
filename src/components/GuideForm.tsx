@@ -12,7 +12,7 @@ import {
 import { CheckCircle2, Send } from "lucide-react";
 
 // URL do webhook (n8n, Make, Zapier, etc.)
-const WEBHOOK_URL = "https://n8n.pedrosilvadigital.pt/webhook/leads-landing-page";
+const WEBHOOK_URL = "https://n8n.srv1236652.hstgr.cloud/webhook-test/e39a61e4-df5a-4305-89ce-612cc92c6fb2";
 const CALENDLY_URL = "https://calendly.com/pmgs5-ai/chamada-inicial?month=2026-01";
 
 const businessTypes = [
