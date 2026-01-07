@@ -1,9 +1,8 @@
 import { Linkedin, Instagram, Mail } from "lucide-react";
 
-// Placeholders: substituir pelos URLs reais
-const EMAIL_CONTACTO = "{EMAIL_DE_CONTACTO}";
-const LINKEDIN_URL = "{LINKEDIN_URL}";
-const INSTAGRAM_URL = "{INSTAGRAM_URL}";
+const EMAIL_CONTACTO = "ai@pedrosilvadigital.pt";
+const LINKEDIN_URL = "https://www.linkedin.com/in/pedro-silva-635854293";
+const INSTAGRAM_URL = "https://www.instagram.com/pedrosilva.ai/";
 
 export function Footer() {
   return (
