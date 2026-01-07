@@ -1,20 +1,7 @@
 import pedroSilva from "@/assets/pedro-silva.jpg";
-
-const tools = [
-  "n8n",
-  "Make",
-  "Zapier",
-  "Google Analytics 4",
-  "Google Ads",
-  "Meta Ads",
-  "Shopify",
-  "Notion",
-  "Google Sheets",
-];
-
+const tools = ["n8n", "Make", "Zapier", "Google Analytics 4", "Google Ads", "Meta Ads", "Shopify", "Notion", "Google Sheets"];
 export function About() {
-  return (
-    <section id="sobre" className="py-20 md:py-28 bg-secondary/50">
+  return <section id="sobre" className="py-20 md:py-28 bg-secondary/50">
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-bold text-foreground text-center mb-12">
@@ -25,11 +12,7 @@ export function About() {
             {/* Photo */}
             <div className="flex-shrink-0">
               <div className="w-48 h-48 md:w-56 md:h-56 rounded-2xl overflow-hidden shadow-lg border-4 border-background">
-                <img
-                  src={pedroSilva}
-                  alt="Pedro Silva - Consultor de Automação e IA"
-                  className="w-full h-full object-cover"
-                />
+                <img alt="Pedro Silva - Consultor de Automação e IA" className="w-full h-full object-cover" src="/lovable-uploads/bc1236ba-60c5-477e-a745-f8dbb51d0440.png" />
               </div>
             </div>
 
@@ -48,20 +31,14 @@ export function About() {
                   Exemplos de ferramentas que usamos:
                 </p>
                 <div className="flex flex-wrap gap-2 justify-center md:justify-start">
-                  {tools.map((tool) => (
-                    <span
-                      key={tool}
-                      className="px-3 py-1 text-xs font-medium bg-background text-muted-foreground rounded-full border border-border"
-                    >
+                  {tools.map(tool => <span key={tool} className="px-3 py-1 text-xs font-medium bg-background text-muted-foreground rounded-full border border-border">
                       {tool}
-                    </span>
-                  ))}
+                    </span>)}
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 }
