@@ -44,6 +44,7 @@ const bottlenecks = [
 interface FormData {
   nome: string;
   email: string;
+  website: string;
   tipoNegocio: string;
   prioridade: string;
   gargalo: string;
@@ -53,6 +54,7 @@ export function GuideForm() {
   const [formData, setFormData] = useState<FormData>({
     nome: "",
     email: "",
+    website: "",
     tipoNegocio: "",
     prioridade: "",
     gargalo: "",
@@ -77,6 +79,7 @@ export function GuideForm() {
         body: JSON.stringify({
           nome: formData.nome,
           email: formData.email,
+          website: formData.website || null,
           tipo_negocio: formData.tipoNegocio,
           prioridade_90_dias: formData.prioridade,
           maior_gargalo: formData.gargalo,
@@ -162,6 +165,18 @@ export function GuideForm() {
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                   placeholder="email@exemplo.pt"
+                />
+              </div>
+
+              {/* Website */}
+              <div className="space-y-2">
+                <Label htmlFor="website">Website</Label>
+                <Input
+                  id="website"
+                  type="url"
+                  value={formData.website}
+                  onChange={(e) => setFormData({ ...formData, website: e.target.value })}
+                  placeholder="https://www.exemplo.pt"
                 />
               </div>
 
