@@ -9,7 +9,7 @@ const faqs = [
   {
     question: "O que acontece na chamada?",
     answer:
-      "Vamos conhecer o teu negócio, perceber os objetivos e identificar 2–3 oportunidades práticas de automação. Sem compromisso.",
+      "Vamos conhecer o seu negócio, perceber os objetivos e identificar 2–3 oportunidades práticas de automação. Sem compromisso.",
   },
   {
     question: "Isto serve para qualquer negócio?",
@@ -24,12 +24,12 @@ const faqs = [
   {
     question: "Preciso de trocar as ferramentas que já uso?",
     answer:
-      "Não. Integramos com o que já tens (CRM, Sheets, Shopify, etc.). Se for necessário, sugerimos alternativas mais eficientes.",
+      "Não. Integramos com o que já tem (CRM, Sheets, Shopify, etc.). Se for necessário, sugerimos alternativas mais eficientes.",
   },
   {
     question: "Como funciona o guia e quando o recebo?",
     answer:
-      "O guia é enviado automaticamente por email após preencheres o formulário. Se quiseres ir mais longe, marca uma chamada.",
+      "O guia é enviado automaticamente por email após preencher o formulário. Se quiser ir mais longe, marque uma chamada.",
   },
 ];
 

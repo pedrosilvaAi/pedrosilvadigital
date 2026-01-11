@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { Checkbox } from "@/components/ui/checkbox";
 import {
   Select,
   SelectContent,
@@ -12,7 +13,7 @@ import {
 import { CheckCircle2, Send } from "lucide-react";
 
 // URL do webhook (n8n, Make, Zapier, etc.)
-const WEBHOOK_URL = "https://n8n.srv1236652.hstgr.cloud/webhook-test/e39a61e4-df5a-4305-89ce-612cc92c6fb2";
+const WEBHOOK_URL = "https://n8n.srv1236652.hstgr.cloud/webhook/LeadsWebsite";
 const CALENDLY_URL = "https://calendly.com/pmgs5-ai/chamada-inicial?month=2026-01";
 
 const businessTypes = [
@@ -48,6 +49,7 @@ interface FormData {
   tipoNegocio: string;
   prioridade: string;
   gargalo: string;
+  autorizaMarketing: boolean;
 }
 
 export function GuideForm() {
@@ -58,6 +60,7 @@ export function GuideForm() {
     tipoNegocio: "",
     prioridade: "",
     gargalo: "",
+    autorizaMarketing: false,
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
@@ -66,6 +69,12 @@ export function GuideForm() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError("");
+
+    if (!formData.autorizaMarketing) {
+      setError("Por favor, autorize o contacto para prosseguir.");
+      return;
+    }
+
     setIsSubmitting(true);
 
     try {
@@ -83,6 +92,7 @@ export function GuideForm() {
           tipo_negocio: formData.tipoNegocio,
           prioridade_90_dias: formData.prioridade,
           maior_gargalo: formData.gargalo,
+          autoriza_marketing: formData.autorizaMarketing,
           timestamp: new Date().toISOString(),
           source: window.location.origin,
         }),
@@ -92,7 +102,7 @@ export function GuideForm() {
       setIsSuccess(true);
     } catch (err) {
       console.error("Erro ao enviar para webhook:", err);
-      setError("Ocorreu um erro. Por favor tenta novamente.");
+      setError("Ocorreu um erro. Por favor tente novamente.");
     } finally {
       setIsSubmitting(false);
     }
@@ -111,7 +121,7 @@ export function GuideForm() {
                 ✅ Obrigado!
               </h3>
               <p className="text-muted-foreground mb-6">
-                O teu guia foi enviado para <strong className="text-foreground">{formData.email}</strong>.
+                O seu guia foi enviado para <strong className="text-foreground">{formData.email}</strong>.
               </p>
               <Button
                 variant="hero"
@@ -133,10 +143,10 @@ export function GuideForm() {
         <div className="max-w-2xl mx-auto">
           <div className="text-center mb-10">
             <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-              Recebe o Guia: Sugestões para Aplicares IA e Automações no Teu Negócio
+              Receba o Guia: Sugestões para Aplicar IA e Automações no Seu Negócio
             </h2>
             <p className="text-lg text-muted-foreground">
-              Preenche o formulário e recebe por email um guia com 3–5 oportunidades práticas, quick wins e próximos passos sugeridos para o teu negócio.
+              Preencha o formulário e receba por email um guia com 3–5 oportunidades práticas, quick wins e próximos passos sugeridos para o seu negócio.
             </p>
           </div>
 
@@ -151,7 +161,7 @@ export function GuideForm() {
                   required
                   value={formData.nome}
                   onChange={(e) => setFormData({ ...formData, nome: e.target.value })}
-                  placeholder="O teu nome"
+                  placeholder="O seu nome"
                 />
               </div>
 
@@ -189,7 +199,7 @@ export function GuideForm() {
                   onValueChange={(value) => setFormData({ ...formData, tipoNegocio: value })}
                 >
                   <SelectTrigger>
-                    <SelectValue placeholder="Seleciona uma opção" />
+                    <SelectValue placeholder="Selecione uma opção" />
                   </SelectTrigger>
                   <SelectContent>
                     {businessTypes.map((type) => (
@@ -210,7 +220,7 @@ export function GuideForm() {
                   onValueChange={(value) => setFormData({ ...formData, prioridade: value })}
                 >
                   <SelectTrigger>
-                    <SelectValue placeholder="Seleciona uma opção" />
+                    <SelectValue placeholder="Selecione uma opção" />
                   </SelectTrigger>
                   <SelectContent>
                     {priorities.map((priority) => (
@@ -231,7 +241,7 @@ export function GuideForm() {
                   onValueChange={(value) => setFormData({ ...formData, gargalo: value })}
                 >
                   <SelectTrigger>
-                    <SelectValue placeholder="Seleciona uma opção" />
+                    <SelectValue placeholder="Selecione uma opção" />
                   </SelectTrigger>
                   <SelectContent>
                     {bottlenecks.map((bottleneck) => (
@@ -241,6 +251,24 @@ export function GuideForm() {
                     ))}
                   </SelectContent>
                 </Select>
+              </div>
+
+              {/* Checkbox de Marketing */}
+              <div className="flex items-start space-x-3 pt-2">
+                <Checkbox
+                  id="autorizaMarketing"
+                  checked={formData.autorizaMarketing}
+                  onCheckedChange={(checked) => 
+                    setFormData({ ...formData, autorizaMarketing: checked === true })
+                  }
+                  className="mt-1"
+                />
+                <Label 
+                  htmlFor="autorizaMarketing" 
+                  className="text-sm text-muted-foreground cursor-pointer leading-relaxed"
+                >
+                  Autorizo contactos para apresentação de serviços de IA e Automação *
+                </Label>
               </div>
 
               {error && (
@@ -265,7 +293,7 @@ export function GuideForm() {
               </Button>
 
               <p className="text-xs text-muted-foreground text-center">
-                Sem spam. O guia é enviado automaticamente após o envio. Também podes marcar uma chamada diretamente.
+                Sem spam. O guia é enviado automaticamente após o envio. Também pode marcar uma chamada diretamente.
               </p>
             </div>
           </form>
