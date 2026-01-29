@@ -1,4 +1,5 @@
-import { Bot, Headphones, FileText, BarChart3, TrendingUp, DollarSign, Settings, Link2 } from "lucide-react";
+import { Bot, Headphones, FileText, BarChart3, TrendingUp, DollarSign, Settings, Link2, Layout, Users, PieChart } from "lucide-react";
+import { AnimatedSection, AnimatedCard } from "@/components/AnimatedSection";
 
 const solutions = [
   {
@@ -49,41 +50,70 @@ const solutions = [
     description: "Ligação entre todas as ferramentas do negócio para funcionar como um único sistema.",
     impact: "Dados centralizados, menos fricção entre equipas e base sólida para escalar.",
   },
+  {
+    icon: Layout,
+    title: "Landing Pages de Alta Conversão",
+    description: "Criação de landing pages otimizadas para campanhas, produtos ou serviços específicos com foco em conversão.",
+    impact: "Mais leads qualificados, melhor ROI em campanhas e mensagens mais focadas.",
+  },
+  {
+    icon: Users,
+    title: "CRM Personalizado",
+    description: "Implementação e configuração de CRM adaptado ao seu processo comercial e de relacionamento com clientes.",
+    impact: "Melhor gestão de relacionamentos, pipeline organizado e equipa mais produtiva.",
+  },
+  {
+    icon: PieChart,
+    title: "Dashboards e WebApps Internos",
+    description: "Criação de aplicações web internas e dashboards personalizados para gestão, operações e análise de dados.",
+    impact: "Visibilidade total do negócio, decisões baseadas em dados e processos mais eficientes.",
+  },
 ];
 
 export function HowWeHelp() {
   return (
-    <section id="como-ajudamos" className="py-20 md:py-28 bg-background">
-      <div className="container mx-auto px-4">
-        <div className="max-w-3xl mx-auto text-center mb-12 md:mb-16">
+    <section id="como-ajudamos" className="py-20 md:py-28 bg-background relative overflow-hidden">
+      {/* Background decoration */}
+      <div className="absolute inset-0 bg-gradient-radial pointer-events-none" />
+      
+      <div className="container mx-auto px-4 relative z-10">
+        <AnimatedSection animation="fade-up" className="max-w-3xl mx-auto text-center mb-12 md:mb-16">
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-            Soluções de IA e Automação
+            Soluções de <span className="text-gradient">IA e Automação</span>
           </h2>
           <p className="text-lg text-muted-foreground">
-            Desenhamos e implementamos soluções de inteligência artificial e automação focadas em impacto real no negócio: mais receita, menos custos e maior controlo operacional. Estas são as 8 soluções mais valiosas para empresas.
+            Desenhamos e implementamos soluções de inteligência artificial e automação focadas em impacto real no negócio: mais receita, menos custos e maior controlo operacional. Estas são as soluções mais valiosas para empresas.
           </p>
-        </div>
+        </AnimatedSection>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 md:gap-8">
           {solutions.map((solution, index) => (
-            <div
+            <AnimatedCard
               key={solution.title}
-              className="group p-6 md:p-8 bg-card rounded-xl border border-border hover:border-primary/30 hover:shadow-lg transition-all duration-300"
-              style={{ animationDelay: `${index * 100}ms` }}
+              index={index}
+              hoverEffect="lift"
+              className="group p-6 md:p-8 bg-card rounded-xl border border-border hover:border-primary/30 transition-all duration-500"
             >
-              <div className="w-12 h-12 mb-5 rounded-lg bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
-                <solution.icon className="w-6 h-6 text-primary" strokeWidth={1.5} />
+              {/* Icon with glow effect */}
+              <div className="w-14 h-14 mb-5 rounded-xl bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 group-hover:shadow-[0_0_20px_rgba(var(--primary-rgb),0.3)] transition-all duration-500">
+                <solution.icon className="w-7 h-7 text-primary group-hover:scale-110 transition-transform duration-300" strokeWidth={1.5} />
               </div>
-              <h3 className="text-lg font-semibold text-foreground mb-2">
+              
+              <h3 className="text-lg font-semibold text-foreground mb-2 group-hover:text-primary transition-colors duration-300">
                 {solution.title}
               </h3>
               <p className="text-muted-foreground text-sm leading-relaxed mb-3">
                 {solution.description}
               </p>
-              <p className="text-primary/80 text-xs font-medium">
-                💡 {solution.impact}
-              </p>
-            </div>
+              
+              {/* Impact badge */}
+              <div className="inline-flex items-start gap-2 p-2 rounded-lg bg-primary/5 border border-primary/10">
+                <span className="text-lg">💡</span>
+                <p className="text-primary/80 text-xs font-medium leading-relaxed">
+                  {solution.impact}
+                </p>
+              </div>
+            </AnimatedCard>
           ))}
         </div>
       </div>

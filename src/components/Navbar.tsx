@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
 
-const CALENDLY_URL = "https://calendly.com/pmgs5-ai/chamada-inicial?month=2026-01";
+const CALENDLY_URL = "https://calendly.com/pedrosilvadigital/chamada-inicial";
 
 const navLinks = [
   { href: "#como-ajudamos", label: "Como Ajudamos" },
