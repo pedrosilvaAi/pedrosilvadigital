@@ -1,12 +1,7 @@
-import pedroSilva from "@/assets/pedro-silva.jpg";
-import { AnimatedSection, AnimatedCard } from "@/components/AnimatedSection";
-import { useScrollAnimation } from "@/hooks/useScrollAnimation";
-
-const tools = ["n8n", "Make", "Zapier", "Google Analytics 4", "Google Ads", "Meta Ads", "Shopify", "Notion", "Google Sheets"];
+import { AnimatedSection } from "@/components/AnimatedSection";
+import { Code, Sparkles } from "lucide-react";
 
 export function About() {
-  const { ref, isVisible } = useScrollAnimation();
-
   return (
     <section id="sobre" className="py-20 md:py-28 bg-secondary/50 relative overflow-hidden">
       {/* Background decoration */}
@@ -49,23 +44,21 @@ export function About() {
                 O nosso método: <strong className="text-primary">ouvir, planear, executar e otimizar</strong>. Sem promessas vazias, sem complexidade desnecessária.
               </p>
 
-              {/* Tools */}
-              <div>
-                <p className="text-sm text-muted-foreground mb-3">
-                  Exemplos de ferramentas que usamos:
-                </p>
-                <div ref={ref} className="flex flex-wrap gap-2 justify-center md:justify-start">
-                  {tools.map((tool, index) => (
-                    <span 
-                      key={tool} 
-                      className={`px-3 py-1.5 text-xs font-medium bg-background text-muted-foreground rounded-full border border-border hover:border-primary/30 hover:text-primary transition-all duration-300 cursor-default ${
-                        isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-                      }`}
-                      style={{ transitionDelay: `${index * 50}ms` }}
-                    >
-                      {tool}
-                    </span>
-                  ))}
+              {/* Custom Solutions Highlight */}
+              <div className="p-5 rounded-xl bg-primary/5 border border-primary/20 mb-6">
+                <div className="flex items-start gap-3">
+                  <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
+                    <Code className="w-5 h-5 text-primary" />
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-foreground mb-2 flex items-center gap-2">
+                      Soluções 100% Personalizadas
+                      <Sparkles className="w-4 h-4 text-primary" />
+                    </h4>
+                    <p className="text-muted-foreground text-sm leading-relaxed">
+                      Contamos com programador na equipa, o que nos permite criar soluções totalmente personalizadas e sistemas complexos. Enquanto muitas consultorias apenas recomendam ferramentas standard, nós desenvolvemos automações custom quando necessário, adaptadas 100% às necessidades específicas do vosso negócio.
+                    </p>
+                  </div>
                 </div>
               </div>
             </AnimatedSection>

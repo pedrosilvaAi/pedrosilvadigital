@@ -9,29 +9,44 @@ import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 const faqs = [
   {
-    question: "O que acontece na chamada?",
+    question: "Quanto custa uma solução de automação?",
     answer:
-      "Vamos conhecer o seu negócio, perceber os objetivos e identificar 2–3 oportunidades práticas de automação. Sem compromisso.",
+      "O investimento varia conforme a complexidade e necessidades específicas de cada empresa. Cada projeto é único. Oferecemos diagnóstico gratuito onde avaliamos o vosso caso e apresentamos proposta personalizada com investimento estimado.",
   },
   {
-    question: "Isto serve para qualquer negócio?",
+    question: "Quanto tempo demora a implementação?",
     answer:
-      "Trabalhamos principalmente com negócios que têm capacidade de investir em sistemas e processos (serviços, e-commerce, saúde, imobiliário, indústria).",
+      "Depende do âmbito do projeto. Projetos mais simples podem estar prontos em 2-4 semanas, enquanto soluções mais complexas podem demorar 1-3 meses. Durante o diagnóstico gratuito, damos timeline precisa para o vosso caso específico.",
   },
   {
-    question: "Quanto tempo demora implementar algo?",
+    question: "Preciso de ter equipa de IT?",
     answer:
-      "Depende da complexidade. Alguns projetos ficam prontos em 1–2 semanas; outros podem levar 1–2 meses. Definimos tudo no plano inicial.",
+      "Não. Criamos soluções user-friendly e fazemos formação da equipa. Também oferecemos suporte contínuo para garantir que tudo funciona perfeitamente.",
   },
   {
-    question: "Preciso de trocar as ferramentas que já uso?",
+    question: "Como sei o que devo automatizar primeiro?",
     answer:
-      "Não. Integramos com o que já tem (CRM, Sheets, Shopify, etc.). Se for necessário, sugerimos alternativas mais eficientes.",
+      "No diagnóstico gratuito, mapeamos os vossos processos e identificamos onde há maior retorno. Recomendamos começar pelo processo que mais tempo consome ou que tem mais erros, garantindo impacto rápido.",
   },
   {
-    question: "Como funciona o guia e quando o recebo?",
+    question: "Trabalham com que tipo de empresas?",
     answer:
-      "O guia é enviado automaticamente por email após preencher o formulário. Se quiser ir mais longe, marque uma chamada.",
+      "Trabalhamos com PMEs de diversos setores. Se têm processos manuais repetitivos que consomem tempo da equipa, podemos ajudar a automatizar e ganhar eficiência.",
+  },
+  {
+    question: "Qual a diferença entre ferramenta standard e solução custom?",
+    answer:
+      "Ferramentas standard funcionam para processos comuns e têm implementação mais rápida. Soluções custom são desenvolvidas à medida para necessidades específicas que ferramentas prontas não resolvem. Como temos programador na equipa, podemos criar o que for necessário. Ajudamos a decidir qual é melhor para cada caso.",
+  },
+  {
+    question: "Oferecem suporte após implementação?",
+    answer:
+      "Sim. Todas as soluções incluem período de garantia e opção de suporte contínuo, que cobre manutenção, ajustes e melhorias conforme o negócio evolui.",
+  },
+  {
+    question: "E se a automação não funcionar como esperado?",
+    answer:
+      "Trabalhamos em fases com validação contínua. Só avançamos quando cada etapa está aprovada. Além disso, há período de ajustes incluído para garantir que tudo funciona perfeitamente.",
   },
 ];
 
