@@ -18,6 +18,61 @@ import {
 import { AnimatedSection } from "@/components/AnimatedSection";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
+interface InputWithTooltipProps {
+  id: string;
+  label: string;
+  tooltip: string;
+  placeholder: string;
+  value: string;
+  onChange: (value: string) => void;
+  suffix?: string;
+}
+
+function InputWithTooltip({
+  id,
+  label,
+  tooltip,
+  placeholder,
+  value,
+  onChange,
+  suffix,
+}: InputWithTooltipProps) {
+  return (
+    <div className="space-y-2">
+      <div className="flex items-center gap-2">
+        <Label htmlFor={id} className="text-foreground font-medium">
+          {label}
+        </Label>
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <Info className="w-4 h-4 text-muted-foreground cursor-help hover:text-primary transition-colors" />
+          </TooltipTrigger>
+          <TooltipContent className="max-w-xs">
+            <p>{tooltip}</p>
+          </TooltipContent>
+        </Tooltip>
+      </div>
+      <div className="relative">
+        <Input
+          id={id}
+          type="number"
+          min="0"
+          step="any"
+          placeholder={placeholder}
+          value={value}
+          onChange={(e) => onChange(e.target.value)}
+          className="bg-background border-border focus:border-primary h-12 text-lg"
+        />
+        {suffix && (
+          <span className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground">
+            {suffix}
+          </span>
+        )}
+      </div>
+    </div>
+  );
+}
+
 const CALENDLY_URL = "https://calendly.com/pedrosilvadigital/chamada-inicial";
 
 interface FormData {
@@ -151,57 +206,6 @@ export function ROICalculator() {
       maximumFractionDigits: 0,
     }).format(value);
   };
-
-  const InputWithTooltip = ({
-    id,
-    label,
-    tooltip,
-    placeholder,
-    value,
-    onChange,
-    suffix,
-  }: {
-    id: string;
-    label: string;
-    tooltip: string;
-    placeholder: string;
-    value: string;
-    onChange: (value: string) => void;
-    suffix?: string;
-  }) => (
-    <div className="space-y-2">
-      <div className="flex items-center gap-2">
-        <Label htmlFor={id} className="text-foreground font-medium">
-          {label}
-        </Label>
-        <Tooltip>
-          <TooltipTrigger asChild>
-            <Info className="w-4 h-4 text-muted-foreground cursor-help hover:text-primary transition-colors" />
-          </TooltipTrigger>
-          <TooltipContent className="max-w-xs">
-            <p>{tooltip}</p>
-          </TooltipContent>
-        </Tooltip>
-      </div>
-      <div className="relative">
-        <Input
-          id={id}
-          type="number"
-          min="0"
-          step="any"
-          placeholder={placeholder}
-          value={value}
-          onChange={(e) => onChange(e.target.value)}
-          className="bg-background border-border focus:border-primary h-12 text-lg"
-        />
-        {suffix && (
-          <span className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground">
-            {suffix}
-          </span>
-        )}
-      </div>
-    </div>
-  );
 
   return (
     <section id="calculadora" className="py-20 md:py-28 bg-secondary/30 relative overflow-hidden">
