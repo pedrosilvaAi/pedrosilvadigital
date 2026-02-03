@@ -1,21 +1,15 @@
 import { Button } from "@/components/ui/button";
-import { Check, ChevronDown } from "lucide-react";
+import { ChevronDown } from "lucide-react";
 import heroBg from "@/assets/hero-bg.jpg";
 import { useParallax } from "@/hooks/useScrollAnimation";
 
 const CALENDLY_URL = "https://calendly.com/pedrosilvadigital/chamada-inicial";
 
-const benefits = [
-  "Menos tarefas manuais",
-  "Processos mais consistentes",
-  "Mais visibilidade e controlo",
-];
-
 export function Hero() {
   const { ref: parallaxRef, offset } = useParallax(0.3);
 
-  const scrollToGuide = () => {
-    const element = document.querySelector("#guia");
+  const scrollToProcess = () => {
+    const element = document.querySelector("#processo");
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });
     }
@@ -74,40 +68,22 @@ export function Hero() {
             className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-primary-foreground leading-tight mb-6 animate-slide-up"
             style={{ animationDelay: "0.2s" }}
           >
-            Automação e IA para negócios que querem operar com{" "}
-            <span className="text-gradient">mais eficiência</span>.
+            Automação e IA para empresas que querem{" "}
+            <span className="text-gradient">reduzir custos operacionais</span> e{" "}
+            <span className="text-gradient">aumentar vendas</span> sem contratar mais pessoas.
           </h1>
           
           <p 
-            className="text-lg md:text-xl text-primary-foreground/80 mb-8 max-w-2xl mx-auto animate-slide-up"
+            className="text-lg md:text-xl text-primary-foreground/80 mb-10 max-w-2xl mx-auto animate-slide-up"
             style={{ animationDelay: "0.4s" }}
           >
-            Ajudamos empresas a identificar oportunidades e implementar automações práticas, com foco em clareza e execução.
+            Criamos sistemas inteligentes que automatizam processos, recuperam leads e aumentam a eficiência operacional em poucas semanas.
           </p>
-
-          {/* Benefits with stagger */}
-          <ul 
-            className="flex flex-col sm:flex-row justify-center gap-4 sm:gap-8 mb-10 animate-slide-up"
-            style={{ animationDelay: "0.5s" }}
-          >
-            {benefits.map((benefit, index) => (
-              <li 
-                key={benefit} 
-                className="flex items-center justify-center gap-2 text-primary-foreground/90 animate-fade-in"
-                style={{ animationDelay: `${0.6 + index * 0.1}s` }}
-              >
-                <div className="w-5 h-5 rounded-full bg-primary/20 flex items-center justify-center">
-                  <Check className="w-3 h-3 text-primary" />
-                </div>
-                <span className="text-sm md:text-base">{benefit}</span>
-              </li>
-            ))}
-          </ul>
 
           {/* CTAs with glow effect */}
           <div 
             className="flex flex-col sm:flex-row justify-center gap-4 animate-scale-in"
-            style={{ animationDelay: "0.8s" }}
+            style={{ animationDelay: "0.6s" }}
           >
             <Button
               variant="hero"
@@ -115,16 +91,16 @@ export function Hero() {
               className="group relative overflow-hidden hover-glow"
               onClick={() => window.open(CALENDLY_URL, "_blank")}
             >
-              <span className="relative z-10">Marcar Chamada (15–30 min)</span>
+              <span className="relative z-10">Agendar diagnóstico gratuito (15 min)</span>
               <div className="absolute inset-0 bg-gradient-to-r from-primary to-primary/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
             </Button>
             <Button
               variant="heroLight"
               size="xl"
               className="hover-lift"
-              onClick={scrollToGuide}
+              onClick={scrollToProcess}
             >
-              Receber Guia Gratuito
+              Ver como funciona
             </Button>
           </div>
         </div>
