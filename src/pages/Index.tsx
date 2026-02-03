@@ -2,6 +2,8 @@ import { Navbar } from "@/components/Navbar";
 import { Hero } from "@/components/Hero";
 import { ROICalculator } from "@/components/ROICalculator";
 import { SolutionsByDepartment } from "@/components/SolutionsByDepartment";
+import { NotForSection } from "@/components/NotForSection";
+import { IdealForSection } from "@/components/IdealForSection";
 import { Process } from "@/components/Process";
 import { GuideForm } from "@/components/GuideForm";
 import { About } from "@/components/About";
@@ -18,6 +20,8 @@ const Index = () => {
         <Hero />
         <ROICalculator />
         <SolutionsByDepartment />
+        <NotForSection />
+        <IdealForSection />
         <Process />
         <GuideForm />
         <About />
