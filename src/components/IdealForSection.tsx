@@ -25,6 +25,10 @@ const idealCriteria = [
     text: "Negócios que querem escalar sem aumentar headcount",
     icon: TrendingUp,
   },
+  {
+    text: "Empresas que perdem leads por falta de follow-up",
+    icon: Users,
+  },
 ];
 
 export function IdealForSection() {
