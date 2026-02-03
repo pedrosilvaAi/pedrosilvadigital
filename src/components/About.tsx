@@ -40,8 +40,11 @@ export function About() {
               <p className="text-lg text-foreground leading-relaxed mb-6">
                 Ajudamos empresas a implementar automações e IA de forma prática e sustentável. Com experiência em marketing digital, IA e automações, focamo-nos em construir sistemas que funcionam e podem escalar.
               </p>
-              <p className="text-lg text-foreground leading-relaxed mb-6">
+              <p className="text-lg text-foreground leading-relaxed mb-4">
                 O nosso método: <strong className="text-primary">ouvir, planear, executar e otimizar</strong>. Sem promessas vazias, sem complexidade desnecessária.
+              </p>
+              <p className="text-muted-foreground text-sm leading-relaxed mb-6">
+                Já trabalhamos com <strong className="text-foreground">imobiliárias</strong>, <strong className="text-foreground">stands de automóveis</strong>, <strong className="text-foreground">e-commerce</strong>, entre outros nichos.
               </p>
 
               {/* Custom Solutions Highlight */}
