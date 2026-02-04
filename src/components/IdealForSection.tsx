@@ -70,11 +70,14 @@ export function IdealForSection() {
           <AnimatedSection animation="fade-up" delay={300} className="text-center">
             <Button
               variant="hero"
-              size="xl"
-              className="hover-glow"
+              size="lg"
+              className="hover-glow whitespace-normal h-auto py-3 px-6"
               onClick={() => window.open(CALENDLY_URL, "_blank")}
             >
-              Agendar diagnóstico gratuito (15 min)
+              <span className="flex flex-col items-center leading-tight">
+                <span>Agendar diagnóstico gratuito</span>
+                <span className="text-xs opacity-80 font-normal">15 minutos • Sem compromisso</span>
+              </span>
             </Button>
           </AnimatedSection>
         </div>
