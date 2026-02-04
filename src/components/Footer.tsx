@@ -1,4 +1,5 @@
-import { Linkedin, Instagram, Mail, Youtube } from "lucide-react";
+import { Linkedin, Instagram, Mail, Youtube, ArrowUp } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 const EMAIL_CONTACTO = "ai@pedrosilvadigital.pt";
 const LINKEDIN_URL = "https://www.linkedin.com/in/pedro-silva-635854293";
@@ -19,6 +20,10 @@ const TikTokIcon = ({ className }: { className?: string }) => (
 );
 
 export function Footer() {
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
   return (
     <footer className="py-12 bg-background border-t border-border">
       <div className="container mx-auto px-4">
@@ -102,6 +107,19 @@ export function Footer() {
             <p className="text-xs text-muted-foreground mt-4">
               © {new Date().getFullYear()} Pedro Silva. Todos os direitos reservados.
             </p>
+            
+            {/* Back to Top Button */}
+            <div className="mt-6">
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={scrollToTop}
+                className="gap-2"
+              >
+                <ArrowUp className="w-4 h-4" />
+                Voltar ao topo
+              </Button>
+            </div>
           </div>
         </div>
       </div>
