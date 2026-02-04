@@ -80,7 +80,7 @@ export function Navbar() {
               size="default"
               onClick={() => window.open(CALENDLY_URL, "_blank")}
             >
-              Marcar Chamada
+              Agendar diagnóstico gratuito
             </Button>
           </div>
 
@@ -92,6 +92,7 @@ export function Navbar() {
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             aria-label="Toggle menu"
           >
+            {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
         </div>
 
@@ -117,7 +118,7 @@ export function Navbar() {
                   setIsMobileMenuOpen(false);
                 }}
               >
-                Marcar Chamada
+                Agendar diagnóstico gratuito
               </Button>
             </div>
           </div>

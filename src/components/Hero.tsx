@@ -1,5 +1,4 @@
 import { Button } from "@/components/ui/button";
-import { ChevronDown } from "lucide-react";
 import heroBg from "@/assets/hero-bg.jpg";
 import { useParallax } from "@/hooks/useScrollAnimation";
 
@@ -8,8 +7,8 @@ const CALENDLY_URL = "https://calendly.com/pedrosilvadigital/chamada-inicial";
 export function Hero() {
   const { ref: parallaxRef, offset } = useParallax(0.3);
 
-  const scrollToProcess = () => {
-    const element = document.querySelector("#processo");
+  const scrollToGuide = () => {
+    const element = document.querySelector("#guia");
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });
     }
@@ -98,26 +97,14 @@ export function Hero() {
               variant="heroLight"
               size="xl"
               className="hover-lift"
-              onClick={scrollToProcess}
+              onClick={scrollToGuide}
             >
-              Ver como funciona
+              Descarregar guia gratuito
             </Button>
           </div>
         </div>
       </div>
 
-      {/* Animated Scroll indicator */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
-        <button 
-          onClick={() => document.querySelector("#como-ajudamos")?.scrollIntoView({ behavior: "smooth" })}
-          className="flex flex-col items-center gap-2 text-primary-foreground/50 hover:text-primary-foreground/80 transition-colors"
-        >
-          <span className="text-xs uppercase tracking-widest">Scroll</span>
-          <div className="w-8 h-12 border-2 border-primary-foreground/30 rounded-full flex justify-center pt-2 hover:border-primary/50 transition-colors">
-            <ChevronDown className="w-4 h-4 animate-bounce" style={{ animationDelay: "0.5s" }} />
-          </div>
-        </button>
-      </div>
     </section>
   );
 }
