@@ -23,12 +23,15 @@ export function MobileCTA() {
     <div className="fixed bottom-0 left-0 right-0 z-50 p-4 bg-background/95 backdrop-blur-md border-t border-border md:hidden">
       <Button
         variant="hero"
-        size="default"
-        className="w-full text-sm"
+        size="lg"
+        className="w-full whitespace-normal h-auto py-3"
         onClick={() => window.open(CALENDLY_URL, "_blank")}
       >
-        <Calendar className="w-4 h-4 mr-2 flex-shrink-0" />
-        <span className="truncate">Agendar diagnóstico gratuito</span>
+        <Calendar className="w-5 h-5 mr-2 flex-shrink-0" />
+        <span className="text-left leading-tight">
+          Agendar diagnóstico gratuito
+          <span className="block text-xs opacity-80 font-normal">15 minutos • Sem compromisso</span>
+        </span>
       </Button>
     </div>
   );
