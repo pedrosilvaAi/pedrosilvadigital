@@ -87,19 +87,25 @@ export function Hero() {
             <Button
               variant="hero"
               size="xl"
-              className="group relative overflow-hidden hover-glow"
+              className="group relative overflow-hidden hover-glow whitespace-normal h-auto py-4"
               onClick={() => window.open(CALENDLY_URL, "_blank")}
             >
-              <span className="relative z-10">Agendar diagnóstico gratuito (15 min)</span>
+              <span className="relative z-10 flex flex-col items-center leading-tight">
+                <span>Agendar diagnóstico gratuito</span>
+                <span className="text-xs opacity-80 font-normal">15 minutos • Sem compromisso</span>
+              </span>
               <div className="absolute inset-0 bg-gradient-to-r from-primary to-primary/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
             </Button>
             <Button
               variant="heroLight"
               size="xl"
-              className="hover-lift"
+              className="hover-lift whitespace-normal h-auto py-4"
               onClick={scrollToGuide}
             >
-              Descarregar guia gratuito
+              <span className="flex flex-col items-center leading-tight">
+                <span>Descarregar guia gratuito</span>
+                <span className="text-xs opacity-80 font-normal">PDF com dicas práticas</span>
+              </span>
             </Button>
           </div>
         </div>
