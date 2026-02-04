@@ -134,10 +134,13 @@ export function GuideForm() {
                   <Button
                     variant="hero"
                     size="lg"
-                    className="hover-glow"
+                    className="hover-glow whitespace-normal h-auto py-3"
                     onClick={() => window.open(CALENDLY_URL, "_blank")}
                   >
-                    Marcar Chamada para Acelerar Resultados
+                    <span className="flex flex-col items-center leading-tight">
+                      <span>Agendar diagnóstico gratuito</span>
+                      <span className="text-xs opacity-80 font-normal">Acelere os seus resultados</span>
+                    </span>
                   </Button>
                 </div>
               </div>

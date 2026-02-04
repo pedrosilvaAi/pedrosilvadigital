@@ -475,11 +475,16 @@ export function ROICalculator() {
                   </p>
                   <Button
                     size="lg"
-                    className="h-14 px-8 text-lg font-semibold bg-primary hover:bg-primary/90 shadow-lg hover:shadow-xl transition-all duration-300"
+                    className="h-auto py-4 px-6 text-base md:text-lg font-semibold bg-primary hover:bg-primary/90 shadow-lg hover:shadow-xl transition-all duration-300 whitespace-normal"
                     onClick={() => window.open(CALENDLY_URL, "_blank")}
                   >
-                    AGENDAR DIAGNÓSTICO GRATUITO
-                    <ArrowRight className="w-5 h-5 ml-2" />
+                    <span className="flex flex-col items-center leading-tight">
+                      <span className="flex items-center gap-2">
+                        Agendar diagnóstico gratuito
+                        <ArrowRight className="w-5 h-5" />
+                      </span>
+                      <span className="text-xs opacity-80 font-normal">30 minutos • Sem compromisso</span>
+                    </span>
                   </Button>
                 </div>
               </div>

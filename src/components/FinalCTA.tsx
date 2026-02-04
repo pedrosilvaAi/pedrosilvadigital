@@ -47,12 +47,15 @@ export function FinalCTA() {
               <Button
                 variant="hero"
                 size="xl"
-                className="group relative overflow-hidden hover-glow"
+                className="group relative overflow-hidden hover-glow whitespace-normal h-auto py-4"
                 onClick={() => window.open(CALENDLY_URL, "_blank")}
               >
-                <span className="relative z-10 flex items-center">
-                  Marcar Chamada Agora
-                  <ArrowRight className="w-5 h-5 ml-2 transition-transform group-hover:translate-x-1" />
+                <span className="relative z-10 flex flex-col items-center leading-tight">
+                  <span className="flex items-center gap-2">
+                    Agendar diagnóstico gratuito
+                    <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
+                  </span>
+                  <span className="text-xs opacity-80 font-normal">15 minutos • Sem compromisso</span>
                 </span>
               </Button>
             </div>
