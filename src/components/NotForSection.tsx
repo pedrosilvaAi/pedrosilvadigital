@@ -51,11 +51,11 @@ export function NotForSection() {
             </p>
             <Button
               variant="hero"
-              size="xl"
-              className="hover-glow"
+              size="lg"
+              className="hover-glow px-6 md:px-8"
               onClick={() => window.open(CALENDLY_URL, "_blank")}
             >
-              Agendar diagnóstico gratuito (15 min)
+              Agendar diagnóstico gratuito
             </Button>
           </AnimatedSection>
         </div>
