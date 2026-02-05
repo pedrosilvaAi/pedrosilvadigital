@@ -1,4 +1,5 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
+import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
 
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
@@ -206,13 +207,54 @@ serve(async (req) => {
       source: body.source ? sanitizeString(body.source, 200) : 'unknown',
     };
 
-    console.log('Data validated and sanitized, forwarding to webhook');
+    console.log('Data validated and sanitized, saving to database and forwarding to webhook');
+
+    // Initialize Supabase client with service role key for database operations
+    const supabaseUrl = Deno.env.get('SUPABASE_URL');
+    const supabaseServiceKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY');
+    
+    if (!supabaseUrl || !supabaseServiceKey) {
+      console.error('Supabase configuration missing');
+      return new Response(
+        JSON.stringify({ error: 'Configuração do servidor incompleta' }),
+        { status: 500, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+      );
+    }
+
+    const supabase = createClient(supabaseUrl, supabaseServiceKey);
+
+    // Save lead to database
+    const { error: dbError } = await supabase.from('leads').insert({
+      nome: sanitizedData.nome,
+      email: sanitizedData.email,
+      website: sanitizedData.website,
+      tipo_negocio: sanitizedData.tipo_negocio,
+      prioridade_90_dias: sanitizedData.prioridade_90_dias,
+      maior_gargalo: sanitizedData.maior_gargalo,
+      autoriza_marketing: sanitizedData.autoriza_marketing,
+      source: sanitizedData.source,
+      ip_address: clientIP,
+    });
+
+    if (dbError) {
+      console.error('Database insert failed:', dbError.message);
+      // Continue to webhook even if DB fails - we don't want to lose the lead
+    } else {
+      console.log('Lead saved to database successfully');
+    }
 
     // Forward to n8n webhook
     const webhookUrl = Deno.env.get('N8N_WEBHOOK_URL');
     
     if (!webhookUrl) {
       console.error('N8N_WEBHOOK_URL not configured');
+      // If we saved to DB, still return success
+      if (!dbError) {
+        return new Response(
+          JSON.stringify({ success: true, message: 'Formulário enviado com sucesso' }),
+          { status: 200, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+        );
+      }
       return new Response(
         JSON.stringify({ error: 'Configuração do servidor incompleta' }),
         { status: 500, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
@@ -229,13 +271,21 @@ serve(async (req) => {
 
     if (!webhookResponse.ok) {
       console.error('Webhook request failed:', webhookResponse.status);
+      // If we saved to DB, still return success
+      if (!dbError) {
+        console.log('Lead saved to DB despite webhook failure');
+        return new Response(
+          JSON.stringify({ success: true, message: 'Formulário enviado com sucesso' }),
+          { status: 200, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+        );
+      }
       return new Response(
         JSON.stringify({ error: 'Erro ao processar o formulário. Por favor tente novamente.' }),
         { status: 500, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
       );
     }
 
-    console.log('Lead submitted successfully');
+    console.log('Lead submitted successfully to both database and webhook');
     
     return new Response(
       JSON.stringify({ success: true, message: 'Formulário enviado com sucesso' }),
