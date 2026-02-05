@@ -13,8 +13,8 @@ import {
 import { CheckCircle2, Send, Sparkles } from "lucide-react";
 import { AnimatedSection } from "@/components/AnimatedSection";
 
-// URL do webhook (n8n, Make, Zapier, etc.)
-const WEBHOOK_URL = "https://n8n.srv1236652.hstgr.cloud/webhook/LeadsWebsite";
+// Secure edge function endpoint
+const SUBMIT_LEAD_URL = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/submit-lead`;
 const CALENDLY_URL = "https://calendly.com/pedrosilvadigital/chamada-inicial";
 
 const businessTypes = [
@@ -79,13 +79,13 @@ export function GuideForm() {
     setIsSubmitting(true);
 
     try {
-      // Enviar para webhook externo (n8n, Make, Zapier, etc.)
-      await fetch(WEBHOOK_URL, {
+      // Enviar para edge function segura (com validação server-side)
+      const response = await fetch(SUBMIT_LEAD_URL, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          "apikey": import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY,
         },
-        mode: "no-cors", // Permite envio sem CORS
         body: JSON.stringify({
           nome: formData.nome,
           email: formData.email,
@@ -94,16 +94,19 @@ export function GuideForm() {
           prioridade_90_dias: formData.prioridade,
           maior_gargalo: formData.gargalo,
           autoriza_marketing: formData.autorizaMarketing,
-          timestamp: new Date().toISOString(),
           source: window.location.origin,
         }),
       });
 
-      // Com no-cors não conseguimos verificar a resposta, assumimos sucesso
+      if (!response.ok) {
+        const errorData = await response.json().catch(() => ({}));
+        throw new Error(errorData.error || "Erro ao enviar formulário");
+      }
+
       setIsSuccess(true);
     } catch (err) {
-      console.error("Erro ao enviar para webhook:", err);
-      setError("Ocorreu um erro. Por favor tente novamente.");
+      console.error("Erro ao enviar formulário:", err);
+      setError(err instanceof Error ? err.message : "Ocorreu um erro. Por favor tente novamente.");
     } finally {
       setIsSubmitting(false);
     }
