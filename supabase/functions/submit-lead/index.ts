@@ -5,6 +5,61 @@ const corsHeaders = {
   'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type, x-supabase-client-platform, x-supabase-client-platform-version, x-supabase-client-runtime, x-supabase-client-runtime-version',
 };
 
+// Rate limiting configuration
+const RATE_LIMIT_WINDOW_MS = 60 * 60 * 1000; // 1 hour
+const MAX_REQUESTS_PER_WINDOW = 5; // Max 5 submissions per IP per hour
+
+// In-memory rate limit store (resets on function cold start)
+// For production with high traffic, consider using Deno KV or external store
+const rateLimitStore = new Map<string, { count: number; resetTime: number }>();
+
+function checkRateLimit(ip: string): { allowed: boolean; retryAfter?: number } {
+  const now = Date.now();
+  const record = rateLimitStore.get(ip);
+  
+  // Clean up expired entries periodically
+  if (rateLimitStore.size > 1000) {
+    for (const [key, value] of rateLimitStore.entries()) {
+      if (now > value.resetTime) {
+        rateLimitStore.delete(key);
+      }
+    }
+  }
+  
+  if (!record || now > record.resetTime) {
+    // New window or expired record
+    rateLimitStore.set(ip, { count: 1, resetTime: now + RATE_LIMIT_WINDOW_MS });
+    return { allowed: true };
+  }
+  
+  if (record.count >= MAX_REQUESTS_PER_WINDOW) {
+    const retryAfter = Math.ceil((record.resetTime - now) / 1000);
+    return { allowed: false, retryAfter };
+  }
+  
+  // Increment count
+  record.count++;
+  rateLimitStore.set(ip, record);
+  return { allowed: true };
+}
+
+function getClientIP(req: Request): string {
+  // Try various headers that might contain the real IP
+  const forwardedFor = req.headers.get('x-forwarded-for');
+  if (forwardedFor) {
+    // x-forwarded-for can contain multiple IPs, take the first one
+    return forwardedFor.split(',')[0].trim();
+  }
+  
+  const realIP = req.headers.get('x-real-ip');
+  if (realIP) {
+    return realIP.trim();
+  }
+  
+  // Fallback to a generic identifier
+  return 'unknown';
+}
+
 // Valid options for select fields
 const validBusinessTypes = ["servicos", "ecommerce", "saude", "imobiliario", "industria", "outro"];
 const validPriorities = ["eficiencia", "leads", "reporting", "atendimento", "outro"];
@@ -55,9 +110,31 @@ serve(async (req) => {
     );
   }
 
+  // Rate limiting check
+  const clientIP = getClientIP(req);
+  const rateCheck = checkRateLimit(clientIP);
+  
+  if (!rateCheck.allowed) {
+    console.log(`Rate limit exceeded for IP: ${clientIP}`);
+    return new Response(
+      JSON.stringify({ 
+        error: 'Demasiados pedidos. Por favor aguarde antes de tentar novamente.',
+        retryAfter: rateCheck.retryAfter 
+      }),
+      { 
+        status: 429, 
+        headers: { 
+          ...corsHeaders, 
+          'Content-Type': 'application/json',
+          'Retry-After': String(rateCheck.retryAfter)
+        } 
+      }
+    );
+  }
+
   try {
     const body: LeadFormData = await req.json();
-    console.log('Received lead submission request');
+    console.log('Received lead submission request from IP:', clientIP);
 
     // Validate required fields
     if (!body.nome || typeof body.nome !== 'string') {
