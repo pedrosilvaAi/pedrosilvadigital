@@ -1,3 +1,4 @@
+import { useEffect, useRef } from "react";
 import { AlertTriangle, TrendingUp, CheckCircle, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ROIEvents } from "@/lib/analytics";
@@ -10,6 +11,15 @@ interface ROIResultsProps {
 }
 
 export function ROIResults({ results, assumptions }: ROIResultsProps) {
+  const resultsRef = useRef<HTMLDivElement>(null);
+
+  // Scroll to top of results when component mounts
+  useEffect(() => {
+    if (resultsRef.current) {
+      resultsRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  }, []);
+
   const formatCurrency = (value: number) => {
     return new Intl.NumberFormat("pt-PT", {
       style: "currency",
@@ -25,7 +35,7 @@ export function ROIResults({ results, assumptions }: ROIResultsProps) {
   };
 
   return (
-    <div className="mt-12 space-y-10 animate-fade-in">
+    <div ref={resultsRef} className="mt-12 space-y-10 animate-fade-in scroll-mt-24">
       {/* Divider */}
       <div className="h-px bg-gradient-to-r from-transparent via-border to-transparent" />
 
