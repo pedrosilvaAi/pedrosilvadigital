@@ -261,10 +261,14 @@ serve(async (req) => {
       );
     }
 
+    // Get webhook authentication secret
+    const webhookSecret = Deno.env.get('N8N_WEBHOOK_SECRET');
+    
     const webhookResponse = await fetch(webhookUrl, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
+        ...(webhookSecret && { 'X-Webhook-Secret': webhookSecret }),
       },
       body: JSON.stringify(sanitizedData),
     });
