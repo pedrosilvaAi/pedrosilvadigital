@@ -192,13 +192,16 @@ export function ROIResults({ results, assumptions }: ROIResultsProps) {
         </p>
         <Button
           size="lg"
-          className="h-auto py-4 px-8 text-base md:text-lg font-semibold bg-primary hover:bg-primary/90 shadow-lg hover:shadow-xl transition-all duration-300"
+          className="h-auto py-4 px-6 md:px-8 text-sm md:text-lg font-semibold bg-primary hover:bg-primary/90 shadow-lg hover:shadow-xl transition-all duration-300 w-full sm:w-auto max-w-full"
           onClick={handleCTAClick}
         >
           <span className="flex flex-col items-center leading-tight gap-1">
-            <span className="flex items-center gap-2">
-              Agendar diagnóstico gratuito (15 min)
-              <ArrowRight className="w-5 h-5" />
+            <span className="flex items-center gap-2 flex-wrap justify-center text-center">
+              <span>Agendar diagnóstico gratuito</span>
+              <span className="inline-flex items-center gap-1">
+                (15 min)
+                <ArrowRight className="w-4 h-4 md:w-5 md:h-5 flex-shrink-0" />
+              </span>
             </span>
             <span className="text-xs opacity-80 font-normal">Sem compromisso</span>
           </span>
