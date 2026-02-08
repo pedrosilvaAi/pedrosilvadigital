@@ -116,7 +116,7 @@ serve(async (req) => {
   const rateCheck = checkRateLimit(clientIP);
   
   if (!rateCheck.allowed) {
-    console.log(`Rate limit exceeded for IP: ${clientIP}`);
+    console.log('[RATE_LIMIT] Request blocked');
     return new Response(
       JSON.stringify({ 
         error: 'Demasiados pedidos. Por favor aguarde antes de tentar novamente.',
@@ -135,11 +135,11 @@ serve(async (req) => {
 
   try {
     const body: LeadFormData = await req.json();
-    console.log('Received lead submission request from IP:', clientIP);
+    console.log('[LEAD] Processing new submission');
 
     // Validate required fields
     if (!body.nome || typeof body.nome !== 'string') {
-      console.log('Validation failed: nome is required');
+      console.log('[VALIDATION] Failed: missing required field');
       return new Response(
         JSON.stringify({ error: 'Nome é obrigatório' }),
         { status: 400, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
@@ -147,7 +147,7 @@ serve(async (req) => {
     }
 
     if (!body.email || typeof body.email !== 'string' || !isValidEmail(body.email)) {
-      console.log('Validation failed: invalid email');
+      console.log('[VALIDATION] Failed: invalid format');
       return new Response(
         JSON.stringify({ error: 'Email inválido' }),
         { status: 400, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
@@ -155,7 +155,7 @@ serve(async (req) => {
     }
 
     if (body.website && !isValidUrl(body.website)) {
-      console.log('Validation failed: invalid website URL');
+      console.log('[VALIDATION] Failed: invalid format');
       return new Response(
         JSON.stringify({ error: 'Website inválido' }),
         { status: 400, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
@@ -163,7 +163,7 @@ serve(async (req) => {
     }
 
     if (!body.tipo_negocio || !validBusinessTypes.includes(body.tipo_negocio)) {
-      console.log('Validation failed: invalid tipo_negocio');
+      console.log('[VALIDATION] Failed: invalid option');
       return new Response(
         JSON.stringify({ error: 'Tipo de negócio inválido' }),
         { status: 400, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
@@ -171,7 +171,7 @@ serve(async (req) => {
     }
 
     if (!body.prioridade_90_dias || !validPriorities.includes(body.prioridade_90_dias)) {
-      console.log('Validation failed: invalid prioridade');
+      console.log('[VALIDATION] Failed: invalid option');
       return new Response(
         JSON.stringify({ error: 'Prioridade inválida' }),
         { status: 400, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
@@ -179,7 +179,7 @@ serve(async (req) => {
     }
 
     if (!body.maior_gargalo || !validBottlenecks.includes(body.maior_gargalo)) {
-      console.log('Validation failed: invalid gargalo');
+      console.log('[VALIDATION] Failed: invalid option');
       return new Response(
         JSON.stringify({ error: 'Gargalo inválido' }),
         { status: 400, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
@@ -187,7 +187,7 @@ serve(async (req) => {
     }
 
     if (typeof body.autoriza_marketing !== 'boolean') {
-      console.log('Validation failed: autoriza_marketing must be boolean');
+      console.log('[VALIDATION] Failed: invalid type');
       return new Response(
         JSON.stringify({ error: 'Autorização de marketing é obrigatória' }),
         { status: 400, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
@@ -207,14 +207,14 @@ serve(async (req) => {
       source: body.source ? sanitizeString(body.source, 200) : 'unknown',
     };
 
-    console.log('Data validated and sanitized, saving to database and forwarding to webhook');
+    console.log('[LEAD] Data validated, processing...');
 
     // Initialize Supabase client with service role key for database operations
     const supabaseUrl = Deno.env.get('SUPABASE_URL');
     const supabaseServiceKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY');
     
     if (!supabaseUrl || !supabaseServiceKey) {
-      console.error('Supabase configuration missing');
+      console.error('[CONFIG] Missing required environment variables');
       return new Response(
         JSON.stringify({ error: 'Configuração do servidor incompleta' }),
         { status: 500, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
@@ -237,17 +237,17 @@ serve(async (req) => {
     });
 
     if (dbError) {
-      console.error('Database insert failed:', dbError.message);
+      console.error('[DB] Insert failed');
       // Continue to webhook even if DB fails - we don't want to lose the lead
     } else {
-      console.log('Lead saved to database successfully');
+      console.log('[DB] Lead saved successfully');
     }
 
     // Forward to n8n webhook
     const webhookUrl = Deno.env.get('N8N_WEBHOOK_URL');
     
     if (!webhookUrl) {
-      console.error('N8N_WEBHOOK_URL not configured');
+      console.error('[CONFIG] Webhook URL not configured');
       // If we saved to DB, still return success
       if (!dbError) {
         return new Response(
@@ -274,10 +274,10 @@ serve(async (req) => {
     });
 
     if (!webhookResponse.ok) {
-      console.error('Webhook request failed:', webhookResponse.status);
+      console.error('[WEBHOOK] Request failed');
       // If we saved to DB, still return success
       if (!dbError) {
-        console.log('Lead saved to DB despite webhook failure');
+        console.log('[LEAD] Saved to DB (webhook unavailable)');
         return new Response(
           JSON.stringify({ success: true, message: 'Formulário enviado com sucesso' }),
           { status: 200, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
@@ -289,7 +289,7 @@ serve(async (req) => {
       );
     }
 
-    console.log('Lead submitted successfully to both database and webhook');
+    console.log('[LEAD] Submitted successfully');
     
     return new Response(
       JSON.stringify({ success: true, message: 'Formulário enviado com sucesso' }),
@@ -297,7 +297,7 @@ serve(async (req) => {
     );
 
   } catch (error) {
-    console.error('Error processing lead submission:', error);
+    console.error('[ERROR] Failed to process submission');
     return new Response(
       JSON.stringify({ error: 'Erro interno do servidor' }),
       { status: 500, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
