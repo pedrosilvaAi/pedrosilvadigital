@@ -59,7 +59,7 @@ export function About() {
                       <Sparkles className="w-4 h-4 text-primary" />
                     </h4>
                     <p className="text-muted-foreground text-sm leading-relaxed">
-                      Contamos com programador na equipa, o que nos permite criar soluções totalmente personalizadas e sistemas complexos. Enquanto muitas consultorias apenas recomendam ferramentas standard, nós desenvolvemos automações custom quando necessário, adaptadas 100% às necessidades específicas do vosso negócio.
+                      Contamos com programador na equipa, o que nos permite criar soluções totalmente personalizadas e sistemas complexos. Enquanto muitas consultorias apenas recomendam ferramentas standard, nós desenvolvemos automações custom e criamos aplicações e softwares personalizados quando necessário, adaptados 100% às necessidades específicas do vosso negócio.
                     </p>
                   </div>
                 </div>
