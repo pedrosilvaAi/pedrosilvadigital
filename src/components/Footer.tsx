@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 
 const EMAIL_CONTACTO = "ai@pedrosilvadigital.pt";
 const LINKEDIN_URL = "https://www.linkedin.com/in/pedro-silva-635854293";
-const INSTAGRAM_URL = "https://www.instagram.com/pedrosilva.ai/";
+const INSTAGRAM_URL = "https://www.instagram.com/pedrosilvadigital/";
 const YOUTUBE_URL = "https://www.youtube.com/@pedrosilvadigital_ai";
 const TIKTOK_URL = "https://www.tiktok.com/@pedrosilvadigital.pt";
 

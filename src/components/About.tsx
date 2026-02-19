@@ -44,7 +44,7 @@ export function About() {
                 O nosso método: <strong className="text-primary">ouvir, planear, executar e otimizar</strong>. Sem promessas vazias, sem complexidade desnecessária.
               </p>
               <p className="text-muted-foreground text-sm leading-relaxed mb-6">
-                Já trabalhamos com <strong className="text-foreground">imobiliárias</strong>, <strong className="text-foreground">stands de automóveis</strong>, <strong className="text-foreground">e-commerce</strong>, entre outros nichos.
+                Já trabalhamos com <strong className="text-foreground">imobiliárias</strong>, <strong className="text-foreground">stands de automóveis</strong>, <strong className="text-foreground">e-commerce</strong>, <strong className="text-foreground">contabilidade</strong>, <strong className="text-foreground">seguros</strong>, <strong className="text-foreground">construção</strong>, entre outros nichos.
               </p>
 
               {/* Custom Solutions Highlight */}
