@@ -50,8 +50,6 @@ export function ROICalculator() {
 
   const handleInputChange = (field: keyof FormData, value: string) => {
     setFormData((prev) => ({ ...prev, [field]: value }));
-    
-    // Clear validation error when user starts typing
     if (validationErrors[field]) {
       setValidationErrors((prev) => {
         const next = { ...prev };
@@ -61,7 +59,6 @@ export function ROICalculator() {
     }
   };
 
-  // Calculate effective hourly cost
   const effectiveHourlyCost = useMemo(() => {
     if (formData.salaryMode === 'hourly') {
       return parseFloat(formData.custoHora) || 0;
@@ -71,126 +68,61 @@ export function ROICalculator() {
     return hours > 0 ? salary / hours : 0;
   }, [formData.salaryMode, formData.custoHora, formData.salarioMensal, formData.horasMensais]);
 
-  // Validation
   const validateForm = (): boolean => {
     const errors: Record<string, string> = {};
-    
     const colaboradores = parseFloat(formData.colaboradores);
-    if (!formData.colaboradores || colaboradores < 1) {
-      errors.colaboradores = "Mínimo 1 colaborador";
-    }
-    
+    if (!formData.colaboradores || colaboradores < 1) errors.colaboradores = "Mínimo 1 colaborador";
     const horasDia = parseFloat(formData.horasDia);
-    if (!formData.horasDia || horasDia <= 0) {
-      errors.horasDia = "Introduza as horas por dia";
-    } else if (horasDia > 12) {
-      errors.horasDia = "Valor máximo: 12 horas";
-    }
-    
+    if (!formData.horasDia || horasDia <= 0) errors.horasDia = "Introduza as horas por dia";
+    else if (horasDia > 12) errors.horasDia = "Valor máximo: 12 horas";
     if (formData.salaryMode === 'hourly') {
-      if (!formData.custoHora || parseFloat(formData.custoHora) <= 0) {
-        errors.custoHora = "Introduza o custo/hora";
-      }
+      if (!formData.custoHora || parseFloat(formData.custoHora) <= 0) errors.custoHora = "Introduza o custo/hora";
     } else {
-      if (!formData.salarioMensal || parseFloat(formData.salarioMensal) <= 0) {
-        errors.salarioMensal = "Introduza o salário mensal";
-      }
+      if (!formData.salarioMensal || parseFloat(formData.salarioMensal) <= 0) errors.salarioMensal = "Introduza o salário mensal";
     }
-    
-    if (!formData.frequenciaErros) {
-      errors.frequenciaErros = "Selecione a frequência";
-    }
-    
+    if (!formData.frequenciaErros) errors.frequenciaErros = "Selecione a frequência";
     const custoErro = parseFloat(formData.custoErro);
-    if (!formData.custoErro || custoErro < 0) {
-      errors.custoErro = "Introduza o custo por erro";
-    }
-    
+    if (!formData.custoErro || custoErro < 0) errors.custoErro = "Introduza o custo por erro";
     setValidationErrors(errors);
     return Object.keys(errors).length === 0;
   };
 
-  // Calculate results based on current assumptions
   const results: Results | null = useMemo(() => {
     if (!showResults) return null;
-    
     const colaboradores = parseFloat(formData.colaboradores) || 0;
     const horasDia = parseFloat(formData.horasDia) || 0;
     const custoHora = effectiveHourlyCost;
     const custoErro = parseFloat(formData.custoErro) || 0;
     const frequenciaErros = formData.frequenciaErros;
-
-    // Custo diário = Horas manuais × Custo hora × Nº colaboradores
     const custoDiario = horasDia * custoHora * colaboradores;
-
-    // Custo semanal = Custo diário × 5
     const custoSemanalManual = custoDiario * 5;
-
-    // Custo mensal = Custo semanal × 4.33
     const custoMensalManual = custoSemanalManual * 4.33;
-
-    // Custo anual trabalho manual = Custo mensal × 12
     const custoAnualManual = custoMensalManual * 12;
-
-    // Custo erros anuais
     const errosPorMes = errorFrequencyMultipliers[frequenciaErros] || 0;
     const custoErrosAnual = errosPorMes * custoErro * 12;
-
-    // Total perdido anual
     const totalPerdidoAnual = custoAnualManual + custoErrosAnual;
-
-    // Poupança com automação (using dynamic assumptions)
     const poupancaTrabalho = custoAnualManual * (assumptions.reducaoTempo / 100);
     const poupancaErros = custoErrosAnual * (assumptions.reducaoErros / 100);
     const poupancaTotalAnual = poupancaTrabalho + poupancaErros;
     const poupancaMensal = poupancaTotalAnual / 12;
-
-    // Estimativa investimento automação
     let investimentoMin: number;
     let investimentoMax: number;
-
-    if (colaboradores <= 3 && horasDia < 4) {
-      investimentoMin = 3000;
-      investimentoMax = 5000;
-    } else if (colaboradores <= 10 || horasDia >= 4) {
-      investimentoMin = 5000;
-      investimentoMax = 8000;
-    } else {
-      investimentoMin = 7000;
-      investimentoMax = 12000;
-    }
-
-    // ROI em meses
+    if (colaboradores <= 3 && horasDia < 4) { investimentoMin = 3000; investimentoMax = 5000; }
+    else if (colaboradores <= 10 || horasDia >= 4) { investimentoMin = 5000; investimentoMax = 8000; }
+    else { investimentoMin = 7000; investimentoMax = 12000; }
     const roiMinMeses = poupancaMensal > 0 ? investimentoMin / poupancaMensal : 0;
     const roiMaxMeses = poupancaMensal > 0 ? investimentoMax / poupancaMensal : 0;
-
-    return {
-      custoSemanalManual,
-      custoMensalManual,
-      custoAnualManual,
-      custoErrosAnual,
-      totalPerdidoAnual,
-      poupancaTrabalho,
-      poupancaErros,
-      poupancaTotalAnual,
-      poupancaMensal,
-      roiMinMeses,
-      roiMaxMeses,
-      investimentoMin,
-      investimentoMax,
-    };
+    return { custoSemanalManual, custoMensalManual, custoAnualManual, custoErrosAnual, totalPerdidoAnual, poupancaTrabalho, poupancaErros, poupancaTotalAnual, poupancaMensal, roiMinMeses, roiMaxMeses, investimentoMin, investimentoMax };
   }, [showResults, formData, effectiveHourlyCost, assumptions]);
 
   const handleCalculate = () => {
     if (!validateForm()) return;
-    
     ROIEvents.clickCalcularRoi();
     setShowResults(true);
   };
 
   return (
     <section id="calculadora" className="py-24 md:py-32 bg-secondary/30 relative overflow-hidden">
-      {/* Background decoration */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-0 left-1/4 w-96 h-96 rounded-full bg-destructive/5 blur-3xl" />
         <div className="absolute bottom-0 right-1/4 w-72 h-72 rounded-full bg-primary/5 blur-3xl" />
@@ -198,7 +130,6 @@ export function ROICalculator() {
 
       <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-4xl mx-auto">
-          {/* Header */}
           <AnimatedSection animation="fade-up" className="text-center mb-14">
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-destructive/10 border border-destructive/20 text-destructive mb-6">
               <AlertTriangle className="w-4 h-4" />
@@ -206,14 +137,13 @@ export function ROICalculator() {
             </div>
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-5">
               Quanto está a sua empresa a{" "}
-              <span className="text-destructive">PERDER</span> em processos manuais?
+              <span className="text-destructive">PERDER</span> em orçamentação manual?
             </h2>
             <p className="text-lg md:text-xl text-muted-foreground">
-              Descubra em 2 minutos o custo real da ineficiência
+              Descubra em 2 minutos o custo real de medir plantas e orçamentar manualmente
             </p>
           </AnimatedSection>
 
-          {/* Calculator Card */}
           <div
             ref={ref}
             className={`bg-card rounded-2xl border border-border p-6 md:p-10 lg:p-12 shadow-2xl transition-all duration-700 ${
@@ -230,13 +160,12 @@ export function ROICalculator() {
               </div>
             </div>
 
-            {/* Form */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
               <InputWithTooltip
                 id="colaboradores"
-                label="Quantos colaboradores gastam tempo em tarefas manuais?"
-                tooltip="Colaboradores que gastam tempo significativo em tarefas administrativas, entrada de dados, follow-ups manuais, etc."
-                placeholder="Ex: 5"
+                label="Quantos colaboradores fazem medições e orçamentos?"
+                tooltip="Pessoas que gastam tempo a medir plantas, extrair quantidades, pedir cotações e preparar orçamentos manualmente."
+                placeholder="Ex: 3"
                 value={formData.colaboradores}
                 onChange={(v) => handleInputChange("colaboradores", v)}
                 min={1}
@@ -245,8 +174,8 @@ export function ROICalculator() {
 
               <InputWithTooltip
                 id="horasDia"
-                label="Horas por dia em tarefas manuais (média por pessoa)"
-                tooltip="Tempo gasto em tarefas como copiar dados entre sistemas, follow-ups manuais, criar relatórios, etc."
+                label="Horas por dia em medições e orçamentação (média)"
+                tooltip="Tempo gasto a medir plantas, preparar mapas de quantidades, contactar fornecedores e montar orçamentos."
                 placeholder="Ex: 4"
                 value={formData.horasDia}
                 onChange={(v) => handleInputChange("horasDia", v)}
@@ -270,14 +199,14 @@ export function ROICalculator() {
               <div className="space-y-2">
                 <div className="flex items-center gap-2">
                   <Label className="text-foreground font-medium text-sm md:text-base">
-                    Frequência de erros em processos manuais
+                    Frequência de erros em medições/orçamentos
                   </Label>
                   <Tooltip>
                     <TooltipTrigger asChild>
                       <Info className="w-4 h-4 text-muted-foreground cursor-help hover:text-primary transition-colors flex-shrink-0" />
                     </TooltipTrigger>
                     <TooltipContent className="max-w-xs">
-                      <p>Erros como dados incorretos, faturação errada, duplicados, informação desatualizada</p>
+                      <p>Erros como medições incorretas, quantidades erradas, omissões em mapas de quantidades, cotações desatualizadas</p>
                     </TooltipContent>
                   </Tooltip>
                 </div>
@@ -302,9 +231,9 @@ export function ROICalculator() {
 
               <InputWithTooltip
                 id="custoErro"
-                label="Custo médio de cada erro"
-                tooltip="Considere tempo de correção + impacto no cliente + reprocessamento"
-                placeholder="Ex: 100"
+                label="Custo médio de cada erro de medição/orçamento"
+                tooltip="Considere tempo de correção, retrabalho, material desperdiçado e impacto na margem do projeto."
+                placeholder="Ex: 200"
                 value={formData.custoErro}
                 onChange={(v) => handleInputChange("custoErro", v)}
                 suffix="€"
@@ -313,7 +242,6 @@ export function ROICalculator() {
               />
             </div>
 
-            {/* Calculate Button */}
             <div className="mt-10 space-y-3">
               <Button
                 onClick={handleCalculate}
@@ -328,18 +256,14 @@ export function ROICalculator() {
               </p>
             </div>
 
-            {/* Calculation Explanation */}
             <CalculationExplanation />
 
-            {/* Results */}
             {showResults && results && (
               <>
-                {/* Assumptions Block */}
                 <AssumptionsBlock
                   settings={assumptions}
                   onSettingsChange={setAssumptions}
                 />
-                
                 <ROIResults results={results} assumptions={assumptions} />
               </>
             )}

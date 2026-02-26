@@ -1,34 +1,16 @@
 import { AnimatedSection, AnimatedCard } from "@/components/AnimatedSection";
 import { Button } from "@/components/ui/button";
-import { Check, Building2, Users, MessageSquare, Cog, TrendingUp } from "lucide-react";
+import { Check, Zap, HardHat, Sun, Droplets, Wrench, Building2 } from "lucide-react";
 
 const CALENDLY_URL = "https://calendly.com/pedrosilvadigital/chamada-inicial";
 
 const idealCriteria = [
-  {
-    text: "PME em crescimento",
-    icon: Building2,
-  },
-  {
-    text: "Equipas comerciais",
-    icon: Users,
-  },
-  {
-    text: "Empresas com muitos pedidos de contacto",
-    icon: MessageSquare,
-  },
-  {
-    text: "Operações manuais e repetitivas",
-    icon: Cog,
-  },
-  {
-    text: "Negócios que querem escalar sem aumentar headcount",
-    icon: TrendingUp,
-  },
-  {
-    text: "Empresas que perdem leads por falta de follow-up",
-    icon: Users,
-  },
+  { text: "Empresas de instalações elétricas", icon: Zap },
+  { text: "Construtoras e empreiteiros", icon: HardHat },
+  { text: "Empresas de HVAC e climatização", icon: Wrench },
+  { text: "Empresas de energia solar", icon: Sun },
+  { text: "Empresas de águas e saneamento", icon: Droplets },
+  { text: "Gabinetes de engenharia e projeto", icon: Building2 },
 ];
 
 export function IdealForSection() {
@@ -75,7 +57,7 @@ export function IdealForSection() {
               onClick={() => window.open(CALENDLY_URL, "_blank")}
             >
               <span className="flex flex-col items-center leading-tight">
-                <span>Agendar diagnóstico gratuito</span>
+                <span>Agendar demonstração gratuita</span>
                 <span className="text-xs opacity-80 font-normal">15 minutos • Sem compromisso</span>
               </span>
             </Button>

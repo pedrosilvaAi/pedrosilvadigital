@@ -9,44 +9,44 @@ import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 const faqs = [
   {
-    question: "Quanto custa uma solução de automação?",
+    question: "Que tipos de plantas AutoCAD suportam?",
     answer:
-      "O investimento varia conforme a complexidade e necessidades específicas de cada empresa. Cada projeto é único. Oferecemos diagnóstico gratuito onde avaliamos o vosso caso e apresentamos proposta personalizada com investimento estimado.",
+      "O nosso sistema suporta plantas em formato DWG e DXF, tanto em 2D como em 3D. Trabalhamos com plantas de arquitetura, estruturas, instalações elétricas, HVAC, águas e esgotos, entre outras especialidades.",
   },
   {
-    question: "Quanto tempo demora a implementação?",
+    question: "Como funciona a extração de quantidades?",
     answer:
-      "Depende do âmbito do projeto. Projetos mais simples podem estar prontos em 2-4 semanas, enquanto soluções mais complexas podem demorar 1-3 meses. Durante o diagnóstico gratuito, damos timeline precisa para o vosso caso específico.",
+      "O sistema analisa as plantas com IA, identifica elementos (tubagens, cabos, equipamentos, materiais) e gera automaticamente o mapa de quantidades categorizado por especialidade e artigo. É feita uma verificação cruzada para detetar omissões.",
   },
   {
-    question: "Preciso de ter equipa de IT?",
+    question: "Quanto tempo demora a gerar um pré-orçamento?",
     answer:
-      "Não. Criamos soluções user-friendly e fazemos formação da equipa. Também oferecemos suporte contínuo para garantir que tudo funciona perfeitamente.",
+      "Dependendo da complexidade do projeto, o pré-orçamento é gerado em menos de 24 horas. Para projetos mais simples, pode estar pronto em poucas horas. O sistema envia automaticamente pedidos de cotação aos fornecedores para completar os preços.",
   },
   {
-    question: "Como sei o que devo automatizar primeiro?",
+    question: "Quanto custa o sistema?",
     answer:
-      "No diagnóstico gratuito, mapeamos os vossos processos e identificamos onde há maior retorno. Recomendamos começar pelo processo que mais tempo consome ou que tem mais erros, garantindo impacto rápido.",
+      "O investimento varia conforme a complexidade e volume de projetos da empresa. Oferecemos uma demonstração gratuita onde avaliamos o vosso caso e apresentamos proposta personalizada com investimento estimado.",
   },
   {
     question: "Trabalham com que tipo de empresas?",
     answer:
-      "Trabalhamos com PMEs de diversos setores. Se têm processos manuais repetitivos que consomem tempo da equipa, podemos ajudar a automatizar e ganhar eficiência.",
+      "Focamo-nos em empresas de construção civil, instalações elétricas, HVAC e climatização, energia solar, águas e saneamento, e gabinetes de engenharia e projeto. Se a sua empresa trabalha com plantas técnicas e orçamentação, podemos ajudar.",
   },
   {
-    question: "Qual a diferença entre ferramenta standard e solução custom?",
+    question: "Como são enviados os pedidos de cotação?",
     answer:
-      "Ferramentas standard funcionam para processos comuns e têm implementação mais rápida. Soluções custom são desenvolvidas à medida para necessidades específicas que ferramentas prontas não resolvem. Como temos programador na equipa, podemos criar o que for necessário. Ajudamos a decidir qual é melhor para cada caso.",
+      "O sistema extrai as especificações técnicas das plantas e envia emails automaticamente para os fornecedores da vossa base de dados, com as quantidades e especificações necessárias. As respostas são compiladas automaticamente para o orçamento.",
+  },
+  {
+    question: "Preciso de ter equipa de IT?",
+    answer:
+      "Não. O sistema é configurado pela nossa equipa em parceria com a Typeble, e fazemos formação completa. Também oferecemos suporte contínuo para garantir que tudo funciona perfeitamente.",
   },
   {
     question: "Oferecem suporte após implementação?",
     answer:
       "Sim. Todas as soluções incluem período de garantia e opção de suporte contínuo, que cobre manutenção, ajustes e melhorias conforme o negócio evolui.",
-  },
-  {
-    question: "E se a automação não funcionar como esperado?",
-    answer:
-      "Trabalhamos em fases com validação contínua. Só avançamos quando cada etapa está aprovada. Além disso, há período de ajustes incluído para garantir que tudo funciona perfeitamente.",
   },
 ];
 
