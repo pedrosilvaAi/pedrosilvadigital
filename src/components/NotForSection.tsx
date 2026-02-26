@@ -5,11 +5,11 @@ import { X } from "lucide-react";
 const CALENDLY_URL = "https://calendly.com/pedrosilvadigital/chamada-inicial";
 
 const exclusionCriteria = [
-  "Procura apenas uma ferramenta barata sem implementação estratégica",
-  "Quer apenas um chatbot genérico",
-  "Não está disposto a rever processos internos",
-  "Não quer envolver a equipa na automação",
-  "Procura soluções rápidas sem impacto real no negócio",
+  "Não trabalha com plantas técnicas ou projetos de engenharia",
+  "Não tem volume de orçamentação que justifique automação",
+  "Procura apenas software genérico sem personalização ao seu processo",
+  "Não está disposto a digitalizar processos internos",
+  "Procura soluções sem integração com o fluxo de trabalho existente",
 ];
 
 export function NotForSection() {
@@ -47,7 +47,7 @@ export function NotForSection() {
 
           <AnimatedSection animation="fade-up" delay={300} className="text-center">
             <p className="text-lg text-foreground mb-8 max-w-2xl mx-auto">
-              Trabalhamos com empresas que querem <strong className="text-primary">resultados concretos</strong>, eficiência operacional e crescimento sustentável através de automação inteligente.
+              Trabalhamos com empresas de engenharia e construção que querem <strong className="text-primary">automatizar a orçamentação</strong> e ganhar eficiência operacional real.
             </p>
             <Button
               variant="hero"
@@ -55,7 +55,7 @@ export function NotForSection() {
               className="hover-glow px-6 md:px-8"
               onClick={() => window.open(CALENDLY_URL, "_blank")}
             >
-              Agendar diagnóstico gratuito
+              Agendar demonstração gratuita
             </Button>
           </AnimatedSection>
         </div>

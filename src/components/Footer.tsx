@@ -1,4 +1,4 @@
-import { Linkedin, Instagram, Mail, Youtube, ArrowUp } from "lucide-react";
+import { Linkedin, Instagram, Mail, Youtube, ArrowUp, ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const EMAIL_CONTACTO = "ai@pedrosilvadigital.pt";
@@ -32,8 +32,20 @@ export function Footer() {
             {/* Logo & Contact */}
             <div className="text-center md:text-left">
               <h3 className="text-xl font-bold text-foreground mb-2">
-                Pedro Silva
+                Pedro Silva <span className="text-primary">×</span> Typeble
               </h3>
+              <p className="text-sm text-muted-foreground mb-2">
+                Em parceria com{" "}
+                <a
+                  href="https://typeble.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-primary hover:underline inline-flex items-center gap-1"
+                >
+                  Typeble.com
+                  <ExternalLink className="w-3 h-3" />
+                </a>
+              </p>
               <a
                 href={`mailto:${EMAIL_CONTACTO}`}
                 className="flex items-center justify-center md:justify-start gap-2 text-muted-foreground hover:text-primary transition-colors"
@@ -105,7 +117,7 @@ export function Footer() {
               Os seus dados são tratados com confidencialidade e nunca partilhados com terceiros. Pode solicitar a remoção a qualquer momento.
             </p>
             <p className="text-xs text-muted-foreground mt-4">
-              © {new Date().getFullYear()} Pedro Silva. Todos os direitos reservados.
+              © {new Date().getFullYear()} Pedro Silva × Typeble. Todos os direitos reservados.
             </p>
             
             {/* Back to Top Button */}

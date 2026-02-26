@@ -1,5 +1,5 @@
 import { AnimatedSection } from "@/components/AnimatedSection";
-import { Code, Sparkles } from "lucide-react";
+import { Code, Sparkles, ExternalLink } from "lucide-react";
 
 export function About() {
   return (
@@ -38,13 +38,23 @@ export function About() {
             {/* Bio */}
             <AnimatedSection animation="fade-left" delay={200} className="flex-1 text-center md:text-left">
               <p className="text-lg text-foreground leading-relaxed mb-6">
-                Ajudamos empresas a implementar automações e IA de forma prática e sustentável. Com experiência em marketing digital, IA e automações, focamo-nos em construir sistemas que funcionam e podem escalar.
+                Trabalhamos em parceria com a{" "}
+                <a 
+                  href="https://typeble.com" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="text-primary font-semibold hover:underline inline-flex items-center gap-1"
+                >
+                  Typeble.com
+                  <ExternalLink className="w-4 h-4" />
+                </a>
+                , uma startup de engenharia e software, para levar automação e IA às empresas de construção civil, eletricidade, HVAC, energia solar e águas.
               </p>
               <p className="text-lg text-foreground leading-relaxed mb-4">
                 O nosso método: <strong className="text-primary">ouvir, planear, executar e otimizar</strong>. Sem promessas vazias, sem complexidade desnecessária.
               </p>
               <p className="text-muted-foreground text-sm leading-relaxed mb-6">
-                Já trabalhamos com <strong className="text-foreground">imobiliárias</strong>, <strong className="text-foreground">stands de automóveis</strong>, <strong className="text-foreground">e-commerce</strong>, <strong className="text-foreground">contabilidade</strong>, <strong className="text-foreground">seguros</strong>, <strong className="text-foreground">construção</strong>, entre outros nichos.
+                Focamo-nos em empresas de <strong className="text-foreground">instalações elétricas</strong>, <strong className="text-foreground">construção civil</strong>, <strong className="text-foreground">HVAC e climatização</strong>, <strong className="text-foreground">energia solar</strong>, <strong className="text-foreground">águas e saneamento</strong> e <strong className="text-foreground">gabinetes de engenharia</strong>.
               </p>
 
               {/* Custom Solutions Highlight */}
@@ -59,7 +69,7 @@ export function About() {
                       <Sparkles className="w-4 h-4 text-primary" />
                     </h4>
                     <p className="text-muted-foreground text-sm leading-relaxed">
-                      Contamos com programador na equipa, o que nos permite criar soluções totalmente personalizadas e sistemas complexos. Enquanto muitas consultorias apenas recomendam ferramentas standard, nós desenvolvemos automações custom e criamos aplicações e softwares personalizados quando necessário, adaptados 100% às necessidades específicas do vosso negócio.
+                      Com a equipa de engenharia e software da Typeble, criamos soluções totalmente personalizadas — desde leitura de plantas AutoCAD a sistemas de orçamentação automática, adaptados 100% às necessidades específicas da sua empresa.
                     </p>
                   </div>
                 </div>
