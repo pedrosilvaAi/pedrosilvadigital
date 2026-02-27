@@ -32,13 +32,13 @@ export function FinalCTA() {
 
           <AnimatedSection animation="fade-up" delay={100}>
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              Pronto para <span className="text-gradient">automatizar a sua orçamentação</span>?
+              Pronto para <span className="text-gradient">automatizar</span> o seu negócio?
             </h2>
           </AnimatedSection>
 
           <AnimatedSection animation="fade-up" delay={200}>
             <p className="text-lg text-muted-foreground mb-10 max-w-xl mx-auto">
-              Marque uma demonstração de 15–30 minutos. Vamos mostrar como o sistema funciona com as suas plantas reais.
+              Marque uma chamada de 15–30 minutos, sem compromisso. Vamos identificar as melhores oportunidades para si.
             </p>
           </AnimatedSection>
 
@@ -52,7 +52,7 @@ export function FinalCTA() {
               >
                 <span className="relative z-10 flex flex-col items-center leading-tight">
                   <span className="flex items-center gap-2">
-                    Agendar demonstração gratuita
+                    Agendar diagnóstico gratuito
                     <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
                   </span>
                   <span className="text-xs opacity-80 font-normal">15 minutos • Sem compromisso</span>

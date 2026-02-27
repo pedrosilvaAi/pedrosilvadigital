@@ -59,7 +59,7 @@ export function Hero() {
             style={{ animationDelay: "0.1s" }}
           >
             <span className="w-2 h-2 rounded-full bg-primary animate-pulse-glow mr-2" />
-            <span className="text-sm text-primary-foreground/80">IA & Automação para Engenharia e Construção</span>
+            <span className="text-sm text-primary-foreground/80">Automação & IA para Empresas</span>
           </div>
 
           {/* Title with stagger animation */}
@@ -67,15 +67,16 @@ export function Hero() {
             className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-primary-foreground leading-tight mb-6 animate-slide-up"
             style={{ animationDelay: "0.2s" }}
           >
-            De plantas AutoCAD a{" "}
-            <span className="text-gradient">pré-orçamentos em menos de 24 horas</span>
+            Automação e IA para empresas que querem{" "}
+            <span className="text-gradient">reduzir custos operacionais</span> e{" "}
+            <span className="text-gradient">aumentar vendas</span> sem contratar mais pessoas.
           </h1>
           
           <p 
             className="text-lg md:text-xl text-primary-foreground/80 mb-10 max-w-2xl mx-auto animate-slide-up"
             style={{ animationDelay: "0.4s" }}
           >
-            Sistema com IA que lê plantas 2D e 3D, extrai mapas de quantidades, verifica erros e omissões, pede cotações a fornecedores e gera pré-orçamentos automaticamente.
+            Criamos sistemas inteligentes que automatizam processos, recuperam leads e aumentam a eficiência operacional em poucas semanas.
           </p>
 
           {/* CTAs with glow effect */}
@@ -90,7 +91,7 @@ export function Hero() {
               onClick={() => window.open(CALENDLY_URL, "_blank")}
             >
               <span className="relative z-10 flex flex-col items-center leading-tight">
-                <span>Agendar demonstração gratuita</span>
+                <span>Agendar diagnóstico gratuito</span>
                 <span className="text-xs opacity-80 font-normal">15 minutos • Sem compromisso</span>
               </span>
               <div className="absolute inset-0 bg-gradient-to-r from-primary to-primary/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
@@ -103,7 +104,7 @@ export function Hero() {
             >
               <span className="flex flex-col items-center leading-tight">
                 <span>Descarregar guia gratuito</span>
-                <span className="text-xs opacity-80 font-normal">PDF com casos práticos</span>
+                <span className="text-xs opacity-80 font-normal">PDF com dicas práticas</span>
               </span>
             </Button>
           </div>

@@ -6,19 +6,19 @@ const steps = [
     number: "01",
     title: "Diagnóstico",
     subtitle: "(15–30 min)",
-    description: "Analisamos os vossos processos de orçamentação, gestão de plantas e fluxo com fornecedores",
+    description: "Entender o contexto, objetivos e prioridades do negócio",
   },
   {
     number: "02",
-    title: "Configuração",
+    title: "Plano",
     subtitle: "",
-    description: "Configuramos o sistema para as vossas plantas, fornecedores e especificidades técnicas",
+    description: "Mapear oportunidades, quick wins e próximos passos",
   },
   {
     number: "03",
     title: "Implementação",
     subtitle: "",
-    description: "Ativamos o sistema, formamos a equipa e acompanhamos os primeiros projetos",
+    description: "Construir, testar, documentar e otimizar",
   },
 ];
 
@@ -47,7 +47,7 @@ export function Process() {
 
           <AnimatedSection animation="fade-up" delay={600} className="text-center mt-12">
             <p className="text-muted-foreground italic text-lg px-6 py-4 rounded-xl bg-card/50 border border-border inline-block">
-              "Primeiro percebemos o projeto; depois configuramos a tecnologia."
+              "Primeiro percebemos o negócio; depois escolhemos a tecnologia."
             </p>
           </AnimatedSection>
         </div>
@@ -75,6 +75,7 @@ function ProcessStep({ step, index, totalSteps }: ProcessStepProps) {
           }`}
           style={{ transitionDelay: `${(index + 1) * 200}ms` }}
         >
+          {/* Animated dot traveling along the line */}
           {isVisible && (
             <div 
               className="absolute top-1/2 -translate-y-1/2 w-2 h-2 rounded-full bg-primary animate-shimmer"
@@ -90,12 +91,14 @@ function ProcessStep({ step, index, totalSteps }: ProcessStepProps) {
         }`}
         style={{ transitionDelay: `${index * 150}ms` }}
       >
+        {/* Animated number circle */}
         <div className={`inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary text-primary-foreground text-xl font-bold mb-4 transition-all duration-500 ${
           isVisible ? "scale-100 shadow-[0_0_30px_rgba(var(--primary-rgb),0.4)]" : "scale-75"
         }`}
         style={{ transitionDelay: `${index * 150 + 100}ms` }}
         >
           <span className="relative z-10">{step.number}</span>
+          {/* Pulse ring */}
           <div className="absolute inset-0 rounded-full bg-primary/30 animate-ping" style={{ animationDuration: "2s" }} />
         </div>
         
