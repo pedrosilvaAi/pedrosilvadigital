@@ -59,7 +59,7 @@ export function Hero() {
             style={{ animationDelay: "0.1s" }}
           >
             <span className="w-2 h-2 rounded-full bg-primary animate-pulse-glow mr-2" />
-            <span className="text-sm text-primary-foreground/80">Automação & IA para Empresas</span>
+            <span className="text-sm text-primary-foreground/80">Agente WhatsApp com IA • Responde 24/7</span>
           </div>
 
           {/* Title with stagger animation */}
@@ -67,16 +67,15 @@ export function Hero() {
             className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-primary-foreground leading-tight mb-6 animate-slide-up"
             style={{ animationDelay: "0.2s" }}
           >
-            Automação e IA para empresas que querem{" "}
-            <span className="text-gradient">reduzir custos operacionais</span> e{" "}
-            <span className="text-gradient">aumentar vendas</span> sem contratar mais pessoas.
+            O teu negócio perde clientes todos os dias por não responder ao WhatsApp{" "}
+            <span className="text-gradient">a tempo.</span>
           </h1>
           
           <p 
             className="text-lg md:text-xl text-primary-foreground/80 mb-10 max-w-2xl mx-auto animate-slide-up"
             style={{ animationDelay: "0.4s" }}
           >
-            Criamos sistemas inteligentes que automatizam processos, recuperam leads e aumentam a eficiência operacional em poucas semanas.
+            Um assistente inteligente que responde, qualifica e agenda marcações automaticamente — 24 horas por dia, sem precisares de contratar ninguém.
           </p>
 
           {/* CTAs with glow effect */}
@@ -91,7 +90,7 @@ export function Hero() {
               onClick={() => window.open(CALENDLY_URL, "_blank")}
             >
               <span className="relative z-10 flex flex-col items-center leading-tight">
-                <span>Agendar diagnóstico gratuito</span>
+                <span>Quero ver como funciona</span>
                 <span className="text-xs opacity-80 font-normal">15 minutos • Sem compromisso</span>
               </span>
               <div className="absolute inset-0 bg-gradient-to-r from-primary to-primary/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
@@ -104,7 +103,7 @@ export function Hero() {
             >
               <span className="flex flex-col items-center leading-tight">
                 <span>Descarregar guia gratuito</span>
-                <span className="text-xs opacity-80 font-normal">PDF com dicas práticas</span>
+                <span className="text-xs opacity-80 font-normal">Os 5 sinais que te custam clientes</span>
               </span>
             </Button>
           </div>

@@ -1,34 +1,16 @@
 import { AnimatedSection, AnimatedCard } from "@/components/AnimatedSection";
 import { Button } from "@/components/ui/button";
-import { Check, Building2, Users, MessageSquare, Cog, TrendingUp } from "lucide-react";
+import { Check, Building2, Sparkles, Home, Dumbbell, PawPrint, Wrench } from "lucide-react";
 
 const CALENDLY_URL = "https://calendly.com/pedrosilvadigital/chamada-inicial";
 
 const idealCriteria = [
-  {
-    text: "PME em crescimento",
-    icon: Building2,
-  },
-  {
-    text: "Equipas comerciais",
-    icon: Users,
-  },
-  {
-    text: "Empresas com muitos pedidos de contacto",
-    icon: MessageSquare,
-  },
-  {
-    text: "Operações manuais e repetitivas",
-    icon: Cog,
-  },
-  {
-    text: "Negócios que querem escalar sem aumentar headcount",
-    icon: TrendingUp,
-  },
-  {
-    text: "Empresas que perdem leads por falta de follow-up",
-    icon: Users,
-  },
+  { text: "Clínicas dentárias e médicas privadas", icon: Building2 },
+  { text: "Centros de estética, spas e salões de beleza", icon: Sparkles },
+  { text: "Imobiliárias e mediadores independentes", icon: Home },
+  { text: "Personal trainers, coaches e consultores", icon: Dumbbell },
+  { text: "Veterinários e clínicas de animais", icon: PawPrint },
+  { text: "Prestadores de serviços locais", icon: Wrench },
 ];
 
 export function IdealForSection() {
@@ -44,7 +26,8 @@ export function IdealForSection() {
         <div className="max-w-4xl mx-auto">
           <AnimatedSection animation="fade-up" className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-6">
-              Para quem <span className="text-gradient">é ideal</span>
+              Funciona para qualquer negócio que receba mensagens no{" "}
+              <span className="text-gradient">WhatsApp</span>
             </h2>
           </AnimatedSection>
 
@@ -67,6 +50,12 @@ export function IdealForSection() {
             })}
           </div>
 
+          <AnimatedSection animation="fade-up" delay={200} className="text-center mb-8">
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+              Se tens um WhatsApp Business activo e recebes mensagens de clientes, esta solução é para ti.
+            </p>
+          </AnimatedSection>
+
           <AnimatedSection animation="fade-up" delay={300} className="text-center">
             <Button
               variant="hero"
@@ -75,7 +64,7 @@ export function IdealForSection() {
               onClick={() => window.open(CALENDLY_URL, "_blank")}
             >
               <span className="flex flex-col items-center leading-tight">
-                <span>Agendar diagnóstico gratuito</span>
+                <span>Quero ver como funciona</span>
                 <span className="text-xs opacity-80 font-normal">15 minutos • Sem compromisso</span>
               </span>
             </Button>
