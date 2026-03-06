@@ -2,7 +2,6 @@ import { AnimatedSection, AnimatedCard } from "@/components/AnimatedSection";
 import { X } from "lucide-react";
 
 const exclusionCriteria = [
-  "Ainda não tens um WhatsApp Business activo",
   "O teu negócio recebe menos de 10 mensagens por semana",
   "Queres uma solução genérica sem personalização",
   "Não tens tempo para uma chamada de 15 minutos",
