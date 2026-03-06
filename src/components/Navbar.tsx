@@ -5,7 +5,7 @@ import { Menu, X } from "lucide-react";
 const CALENDLY_URL = "https://calendly.com/pedrosilvadigital/chamada-inicial";
 
 const navLinks = [
-  { href: "#precos", label: "Preços" },
+  { href: "#resultados", label: "Resultados" },
   { href: "#solucoes", label: "Como Funciona" },
   { href: "#processo", label: "Processo" },
   { href: "#sobre", label: "Sobre" },
