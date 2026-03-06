@@ -9,7 +9,6 @@ export function MobileCTA() {
 
   useEffect(() => {
     const handleScroll = () => {
-      // Mostrar após scrollar 100vh (passado o hero)
       setIsVisible(window.scrollY > window.innerHeight * 0.8);
     };
     
@@ -29,7 +28,7 @@ export function MobileCTA() {
       >
         <Calendar className="w-5 h-5 mr-2 flex-shrink-0" />
         <span className="text-left leading-tight">
-          Agendar diagnóstico gratuito
+          Quero ver como funciona
           <span className="block text-xs opacity-80 font-normal">15 minutos • Sem compromisso</span>
         </span>
       </Button>

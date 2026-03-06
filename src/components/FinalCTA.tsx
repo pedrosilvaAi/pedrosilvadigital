@@ -5,13 +5,6 @@ import { AnimatedSection } from "@/components/AnimatedSection";
 const CALENDLY_URL = "https://calendly.com/pedrosilvadigital/chamada-inicial";
 
 export function FinalCTA() {
-  const scrollToGuide = () => {
-    const element = document.querySelector("#guia");
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-    }
-  };
-
   return (
     <section className="py-20 md:py-28 bg-card text-foreground relative overflow-hidden">
       {/* Animated background */}
@@ -32,18 +25,19 @@ export function FinalCTA() {
 
           <AnimatedSection animation="fade-up" delay={100}>
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              Pronto para <span className="text-gradient">automatizar</span> o seu negócio?
+              Quantas mensagens o teu negócio vai{" "}
+              <span className="text-gradient">perder esta semana?</span>
             </h2>
           </AnimatedSection>
 
           <AnimatedSection animation="fade-up" delay={200}>
             <p className="text-lg text-muted-foreground mb-10 max-w-xl mx-auto">
-              Marque uma chamada de 15–30 minutos, sem compromisso. Vamos identificar as melhores oportunidades para si.
+              15 minutos de chamada podem mudar a forma como o teu negócio capta e responde a clientes.
             </p>
           </AnimatedSection>
 
           <AnimatedSection animation="scale-in" delay={300}>
-            <div className="flex flex-col sm:flex-row justify-center gap-4">
+            <div className="flex justify-center">
               <Button
                 variant="hero"
                 size="xl"
@@ -52,26 +46,13 @@ export function FinalCTA() {
               >
                 <span className="relative z-10 flex flex-col items-center leading-tight">
                   <span className="flex items-center gap-2">
-                    Agendar diagnóstico gratuito
+                    Agendar chamada gratuita agora
                     <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
                   </span>
                   <span className="text-xs opacity-80 font-normal">15 minutos • Sem compromisso</span>
                 </span>
               </Button>
             </div>
-          </AnimatedSection>
-
-          <AnimatedSection animation="fade-up" delay={400}>
-            <p className="text-sm text-muted-foreground mt-6">
-              Ou{" "}
-              <button
-                onClick={scrollToGuide}
-                className="underline hover:text-foreground transition-colors hover:decoration-primary"
-              >
-                receba o guia gratuito
-              </button>{" "}
-              e explore por si próprio.
-            </p>
           </AnimatedSection>
         </div>
       </div>

@@ -1,5 +1,12 @@
 import { AnimatedSection } from "@/components/AnimatedSection";
-import { Code, Sparkles } from "lucide-react";
+import { Globe, Clock, Rocket, HandshakeIcon } from "lucide-react";
+
+const credentials = [
+  { icon: Globe, text: "100% em português, feito para Portugal" },
+  { icon: Clock, text: "Agente activo 24h / 7 dias por semana" },
+  { icon: Rocket, text: "Implementação em menos de 7 dias" },
+  { icon: HandshakeIcon, text: "Sem contratos longos" },
+];
 
 export function About() {
   return (
@@ -14,7 +21,7 @@ export function About() {
         <div className="max-w-4xl mx-auto">
           <AnimatedSection animation="fade-up" className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-foreground">
-              Quem <span className="text-gradient">Somos</span>
+              Quem está <span className="text-gradient">por trás disto</span>
             </h2>
           </AnimatedSection>
 
@@ -22,12 +29,11 @@ export function About() {
             {/* Photo with animated border */}
             <AnimatedSection animation="zoom-in" className="flex-shrink-0">
               <div className="relative group">
-                {/* Animated glow ring */}
                 <div className="absolute -inset-1 bg-gradient-to-r from-primary/50 to-primary/30 rounded-2xl blur opacity-30 group-hover:opacity-60 transition-opacity duration-500 animate-pulse-glow" />
                 
                 <div className="relative w-48 h-48 md:w-56 md:h-56 rounded-2xl overflow-hidden shadow-lg border-4 border-background">
                   <img 
-                    alt="Pedro Silva - Consultor de Automação e IA" 
+                    alt="Pedro Silva - Especialista em Automação e IA" 
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" 
                     src="/lovable-uploads/bc1236ba-60c5-477e-a745-f8dbb51d0440.png" 
                   />
@@ -38,31 +44,25 @@ export function About() {
             {/* Bio */}
             <AnimatedSection animation="fade-left" delay={200} className="flex-1 text-center md:text-left">
               <p className="text-lg text-foreground leading-relaxed mb-6">
-                Ajudamos empresas a implementar automações e IA de forma prática e sustentável. Com experiência em marketing digital, IA e automações, focamo-nos em construir sistemas que funcionam e podem escalar.
+                Sou o Pedro Silva, especialista em automação e IA para negócios em Portugal. Não vendo software — entrego um serviço gerido, personalizado, e trato de tudo tecnicamente para que tu te focuses no teu negócio.
               </p>
-              <p className="text-lg text-foreground leading-relaxed mb-4">
-                O nosso método: <strong className="text-primary">ouvir, planear, executar e otimizar</strong>. Sem promessas vazias, sem complexidade desnecessária.
-              </p>
-              <p className="text-muted-foreground text-sm leading-relaxed mb-6">
-                Já trabalhamos com <strong className="text-foreground">imobiliárias</strong>, <strong className="text-foreground">stands de automóveis</strong>, <strong className="text-foreground">e-commerce</strong>, entre outros nichos.
+              <p className="text-lg text-foreground leading-relaxed mb-8">
+                Cada agente que instalo é construído à medida: com o teu tom, os teus serviços, e integrado no teu WhatsApp real. Não és mais um cliente numa plataforma — és o único dono daquele agente.
               </p>
 
-              {/* Custom Solutions Highlight */}
-              <div className="p-5 rounded-xl bg-primary/5 border border-primary/20 mb-6">
-                <div className="flex items-start gap-3">
-                  <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
-                    <Code className="w-5 h-5 text-primary" />
-                  </div>
-                  <div>
-                    <h4 className="font-semibold text-foreground mb-2 flex items-center gap-2">
-                      Soluções 100% Personalizadas
-                      <Sparkles className="w-4 h-4 text-primary" />
-                    </h4>
-                    <p className="text-muted-foreground text-sm leading-relaxed">
-                      Contamos com programador na equipa, o que nos permite criar soluções totalmente personalizadas e sistemas complexos. Enquanto muitas consultorias apenas recomendam ferramentas standard, nós desenvolvemos automações custom quando necessário, adaptadas 100% às necessidades específicas do vosso negócio.
-                    </p>
-                  </div>
-                </div>
+              {/* Credentials Grid */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                {credentials.map((cred, index) => {
+                  const Icon = cred.icon;
+                  return (
+                    <div key={index} className="flex items-center gap-3 p-3 rounded-xl bg-primary/5 border border-primary/20">
+                      <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
+                        <Icon className="w-4 h-4 text-primary" />
+                      </div>
+                      <span className="text-sm font-medium text-foreground">{cred.text}</span>
+                    </div>
+                  );
+                })}
               </div>
             </AnimatedSection>
           </div>
