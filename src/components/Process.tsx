@@ -40,8 +40,8 @@ export function Process() {
       <div className="container mx-auto px-4 relative z-10">
         <AnimatedSection animation="fade-up" className="max-w-3xl mx-auto text-center mb-12 md:mb-16">
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-            Do primeiro contacto ao agente activo em{" "}
-            <span className="text-gradient">menos de uma semana</span>
+            Do primeiro contacto ao{" "}
+            <span className="text-gradient">agente activo</span>
           </h2>
         </AnimatedSection>
 

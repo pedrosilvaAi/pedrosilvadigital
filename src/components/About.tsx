@@ -4,7 +4,7 @@ import { Globe, Clock, Rocket, HandshakeIcon } from "lucide-react";
 const credentials = [
   { icon: Globe, text: "100% em português, feito para Portugal" },
   { icon: Clock, text: "Agente activo 24h / 7 dias por semana" },
-  { icon: Rocket, text: "Implementação em menos de 7 dias" },
+  
   { icon: HandshakeIcon, text: "Sem contratos longos" },
 ];
 
