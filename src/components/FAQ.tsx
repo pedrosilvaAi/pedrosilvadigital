@@ -26,7 +26,7 @@ const faqs = [
   },
   {
     question: "Quanto tempo demora a implementar?",
-    answer: "Entre 3 a 7 dias úteis após a chamada inicial. Na maioria dos casos está activo em menos de uma semana.",
+    answer: "Depende do que for necessário configurar no teu negócio. Alguns processos — como acessos, integrações ou validações — não dependem de mim. Mas na maioria dos casos, o agente fica activo em poucos dias após termos tudo alinhado.",
   },
   {
     question: "Posso cancelar?",

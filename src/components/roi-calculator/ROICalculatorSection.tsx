@@ -53,8 +53,8 @@ export function ROICalculator() {
             {/* Setup Card */}
             <div className="bg-card rounded-2xl border border-border p-6 md:p-8 shadow-lg hover:shadow-xl hover:border-primary/30 transition-all duration-500">
               <h3 className="text-xl font-semibold text-foreground mb-2">Setup</h3>
-              <div className="text-3xl md:text-4xl font-bold text-primary mb-3">
-                €400 – €600
+              <div className="text-xl md:text-2xl font-bold text-primary mb-3">
+                Pagamento único
               </div>
               <p className="text-muted-foreground mb-6">
                 Configuração completa e personalizada do agente para o teu negócio. Pago uma vez.
@@ -75,8 +75,8 @@ export function ROICalculator() {
             <div className="bg-card rounded-2xl border border-primary/30 p-6 md:p-8 shadow-lg hover:shadow-xl transition-all duration-500 relative overflow-hidden">
               <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary/50 via-primary to-primary/50" />
               <h3 className="text-xl font-semibold text-foreground mb-2">Manutenção Mensal</h3>
-              <div className="text-3xl md:text-4xl font-bold text-primary mb-3">
-                €100 – €150<span className="text-lg font-normal text-muted-foreground">/mês</span>
+              <div className="text-xl md:text-2xl font-bold text-primary mb-3">
+                Mensal flexível
               </div>
               <p className="text-muted-foreground mb-6">
                 Suporte contínuo, ajustes e melhorias ao agente.
