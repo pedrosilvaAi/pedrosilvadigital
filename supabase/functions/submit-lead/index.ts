@@ -62,9 +62,9 @@ function getClientIP(req: Request): string {
 }
 
 // Valid options for select fields
-const validBusinessTypes = ["servicos", "ecommerce", "saude", "imobiliario", "industria", "outro"];
-const validPriorities = ["eficiencia", "leads", "reporting", "atendimento", "outro"];
-const validBottlenecks = ["leads", "tarefas", "relatorios", "integracao", "atendimento", "outro"];
+const validBusinessTypes = ["servicos", "ecommerce", "saude", "imobiliario", "industria", "outro", "whatsapp-guide"];
+const validPriorities = ["eficiencia", "leads", "reporting", "atendimento", "outro", "whatsapp-agent"];
+const validBottlenecks = ["leads", "tarefas", "relatorios", "integracao", "atendimento", "outro", "whatsapp-response"];
 
 // Validation helpers
 function isValidEmail(email: string): boolean {
