@@ -1,10 +1,15 @@
 import { AnimatedSection, AnimatedCard } from "@/components/AnimatedSection";
+import { Button } from "@/components/ui/button";
 import { X } from "lucide-react";
 
+const CALENDLY_URL = "https://calendly.com/pedrosilvadigital/chamada-inicial";
+
 const exclusionCriteria = [
-  "O teu negócio recebe menos de 10 mensagens por semana",
-  "Queres uma solução genérica sem personalização",
-  "Não tens tempo para uma chamada de 15 minutos",
+  "Procura apenas uma ferramenta barata sem implementação estratégica",
+  "Quer apenas um chatbot genérico",
+  "Não está disposto a rever processos internos",
+  "Não quer envolver a equipa na automação",
+  "Procura soluções rápidas sem impacto real no negócio",
 ];
 
 export function NotForSection() {
@@ -20,11 +25,14 @@ export function NotForSection() {
         <div className="max-w-4xl mx-auto">
           <AnimatedSection animation="fade-up" className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-6">
-              Isto <span className="text-destructive">NÃO</span> é para ti se...
+              Para quem <span className="text-destructive">não é</span>
             </h2>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+              Não trabalhamos com todas as empresas. Para garantir resultados reais, somos transparentes sobre quando não somos a escolha certa.
+            </p>
           </AnimatedSection>
 
-          <div className="grid gap-4">
+          <div className="grid gap-4 mb-12">
             {exclusionCriteria.map((criteria, index) => (
               <AnimatedCard key={index} index={index} hoverEffect="lift">
                 <div className="flex items-center gap-4 p-5 rounded-xl bg-background/80 border border-border/50 backdrop-blur-sm">
@@ -36,6 +44,20 @@ export function NotForSection() {
               </AnimatedCard>
             ))}
           </div>
+
+          <AnimatedSection animation="fade-up" delay={300} className="text-center">
+            <p className="text-lg text-foreground mb-8 max-w-2xl mx-auto">
+              Trabalhamos com empresas que querem <strong className="text-primary">resultados concretos</strong>, eficiência operacional e crescimento sustentável através de automação inteligente.
+            </p>
+            <Button
+              variant="hero"
+              size="lg"
+              className="hover-glow px-6 md:px-8"
+              onClick={() => window.open(CALENDLY_URL, "_blank")}
+            >
+              Agendar diagnóstico gratuito
+            </Button>
+          </AnimatedSection>
         </div>
       </div>
     </section>

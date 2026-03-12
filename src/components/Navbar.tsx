@@ -5,8 +5,8 @@ import { Menu, X } from "lucide-react";
 const CALENDLY_URL = "https://calendly.com/pedrosilvadigital/chamada-inicial";
 
 const navLinks = [
-  { href: "#resultados", label: "Resultados" },
-  { href: "#solucoes", label: "Como Funciona" },
+  { href: "#calculadora", label: "Calculadora ROI" },
+  { href: "#solucoes", label: "Soluções" },
   { href: "#processo", label: "Processo" },
   { href: "#sobre", label: "Sobre" },
   { href: "#faq", label: "FAQ" },
@@ -53,7 +53,7 @@ export function Navbar() {
               isScrolled ? "text-foreground" : "text-primary-foreground"
             }`}
           >
-            Pedro Silva Digital
+            Pedro Silva
           </a>
 
           {/* Desktop Navigation */}
@@ -80,7 +80,7 @@ export function Navbar() {
               size="default"
               onClick={() => window.open(CALENDLY_URL, "_blank")}
             >
-              Quero ver como funciona
+              Agendar diagnóstico gratuito
             </Button>
           </div>
 
@@ -118,7 +118,7 @@ export function Navbar() {
                   setIsMobileMenuOpen(false);
                 }}
               >
-                Quero ver como funciona
+                Agendar diagnóstico gratuito
               </Button>
             </div>
           </div>

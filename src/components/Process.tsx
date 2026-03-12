@@ -4,27 +4,21 @@ import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 const steps = [
   {
     number: "01",
-    title: "Chamada de diagnóstico",
-    subtitle: "",
-    description: "15 minutos para perceber o teu negócio, os teus serviços e como os clientes te contactam.",
+    title: "Diagnóstico",
+    subtitle: "(15–30 min)",
+    description: "Entender o contexto, objetivos e prioridades do negócio",
   },
   {
     number: "02",
-    title: "Configuração personalizada",
+    title: "Plano",
     subtitle: "",
-    description: "Configuro o agente com o teu tom, os teus serviços, preços e horários. Nada genérico.",
+    description: "Mapear oportunidades, quick wins e próximos passos",
   },
   {
     number: "03",
-    title: "Teste ao vivo",
+    title: "Implementação",
     subtitle: "",
-    description: "Vês o agente a responder em tempo real antes de ficar activo. Aproves tu, não eu.",
-  },
-  {
-    number: "04",
-    title: "Activo e gerido por mim",
-    subtitle: "",
-    description: "Cuido de tudo tecnicamente. Tu só tens de responder às marcações que chegam.",
+    description: "Construir, testar, documentar e otimizar",
   },
 ];
 
@@ -40,17 +34,22 @@ export function Process() {
       <div className="container mx-auto px-4 relative z-10">
         <AnimatedSection animation="fade-up" className="max-w-3xl mx-auto text-center mb-12 md:mb-16">
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-            Do primeiro contacto ao{" "}
-            <span className="text-gradient">agente activo</span>
+            Como <span className="text-gradient">Trabalhamos</span>
           </h2>
         </AnimatedSection>
 
-        <div className="max-w-5xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8 md:gap-8">
+        <div className="max-w-4xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
             {steps.map((step, index) => (
               <ProcessStep key={step.number} step={step} index={index} totalSteps={steps.length} />
             ))}
           </div>
+
+          <AnimatedSection animation="fade-up" delay={600} className="text-center mt-12">
+            <p className="text-muted-foreground italic text-lg px-6 py-4 rounded-xl bg-card/50 border border-border inline-block">
+              "Primeiro percebemos o negócio; depois escolhemos a tecnologia."
+            </p>
+          </AnimatedSection>
         </div>
       </div>
     </section>
@@ -76,6 +75,7 @@ function ProcessStep({ step, index, totalSteps }: ProcessStepProps) {
           }`}
           style={{ transitionDelay: `${(index + 1) * 200}ms` }}
         >
+          {/* Animated dot traveling along the line */}
           {isVisible && (
             <div 
               className="absolute top-1/2 -translate-y-1/2 w-2 h-2 rounded-full bg-primary animate-shimmer"
@@ -98,11 +98,17 @@ function ProcessStep({ step, index, totalSteps }: ProcessStepProps) {
         style={{ transitionDelay: `${index * 150 + 100}ms` }}
         >
           <span className="relative z-10">{step.number}</span>
+          {/* Pulse ring */}
           <div className="absolute inset-0 rounded-full bg-primary/30 animate-ping" style={{ animationDuration: "2s" }} />
         </div>
         
         <h3 className="text-xl font-semibold text-foreground mb-1">
           {step.title}
+          {step.subtitle && (
+            <span className="text-sm font-normal text-muted-foreground ml-1">
+              {step.subtitle}
+            </span>
+          )}
         </h3>
         <p className="text-muted-foreground text-sm leading-relaxed">
           {step.description}

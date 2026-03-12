@@ -9,24 +9,44 @@ import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 const faqs = [
   {
-    question: "Preciso de saber programar ou perceber de tecnologia?",
-    answer: "Não. Trato de tudo. Tu só precisas de ter um WhatsApp Business activo e 15 minutos para a chamada inicial.",
+    question: "Quanto custa uma solução de automação?",
+    answer:
+      "O investimento varia conforme a complexidade e necessidades específicas de cada empresa. Cada projeto é único. Oferecemos diagnóstico gratuito onde avaliamos o vosso caso e apresentamos proposta personalizada com investimento estimado.",
   },
   {
-    question: "Funciona com o meu número de WhatsApp actual?",
-    answer: "Sim, na maioria dos casos. Na chamada inicial percebo qual a melhor configuração para o teu caso específico.",
+    question: "Quanto tempo demora a implementação?",
+    answer:
+      "Depende do âmbito do projeto. Projetos mais simples podem estar prontos em 2-4 semanas, enquanto soluções mais complexas podem demorar 1-3 meses. Durante o diagnóstico gratuito, damos timeline precisa para o vosso caso específico.",
   },
   {
-    question: "O agente substitui-me completamente?",
-    answer: "Não. O agente filtra e qualifica — tu só entras quando o lead está pronto ou quando há uma situação que realmente precisa de ti.",
+    question: "Preciso de ter equipa de IT?",
+    answer:
+      "Não. Criamos soluções user-friendly e fazemos formação da equipa. Também oferecemos suporte contínuo para garantir que tudo funciona perfeitamente.",
   },
   {
-    question: "E se o cliente fizer uma pergunta que o agente não sabe responder?",
-    answer: "O agente escalona automaticamente para ti e avisa-te de imediato. Nunca deixa um cliente sem resposta.",
+    question: "Como sei o que devo automatizar primeiro?",
+    answer:
+      "No diagnóstico gratuito, mapeamos os vossos processos e identificamos onde há maior retorno. Recomendamos começar pelo processo que mais tempo consome ou que tem mais erros, garantindo impacto rápido.",
   },
   {
-    question: "Posso cancelar?",
-    answer: "Sim, sem compromissos longos. A manutenção mensal é mês a mês.",
+    question: "Trabalham com que tipo de empresas?",
+    answer:
+      "Trabalhamos com PMEs de diversos setores. Se têm processos manuais repetitivos que consomem tempo da equipa, podemos ajudar a automatizar e ganhar eficiência.",
+  },
+  {
+    question: "Qual a diferença entre ferramenta standard e solução custom?",
+    answer:
+      "Ferramentas standard funcionam para processos comuns e têm implementação mais rápida. Soluções custom são desenvolvidas à medida para necessidades específicas que ferramentas prontas não resolvem. Como temos programador na equipa, podemos criar o que for necessário. Ajudamos a decidir qual é melhor para cada caso.",
+  },
+  {
+    question: "Oferecem suporte após implementação?",
+    answer:
+      "Sim. Todas as soluções incluem período de garantia e opção de suporte contínuo, que cobre manutenção, ajustes e melhorias conforme o negócio evolui.",
+  },
+  {
+    question: "E se a automação não funcionar como esperado?",
+    answer:
+      "Trabalhamos em fases com validação contínua. Só avançamos quando cada etapa está aprovada. Além disso, há período de ajustes incluído para garantir que tudo funciona perfeitamente.",
   },
 ];
 

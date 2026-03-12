@@ -31,12 +31,9 @@ export function Footer() {
           <div className="flex flex-col md:flex-row justify-between items-center gap-8">
             {/* Logo & Contact */}
             <div className="text-center md:text-left">
-              <h3 className="text-xl font-bold text-foreground mb-1">
-                Pedro Silva Digital
+              <h3 className="text-xl font-bold text-foreground mb-2">
+                Pedro Silva
               </h3>
-              <p className="text-sm text-muted-foreground mb-2">
-                Agentes WhatsApp com IA para negócios locais em Portugal 🇵🇹
-              </p>
               <a
                 href={`mailto:${EMAIL_CONTACTO}`}
                 className="flex items-center justify-center md:justify-start gap-2 text-muted-foreground hover:text-primary transition-colors"
@@ -108,7 +105,7 @@ export function Footer() {
               Os seus dados são tratados com confidencialidade e nunca partilhados com terceiros. Pode solicitar a remoção a qualquer momento.
             </p>
             <p className="text-xs text-muted-foreground mt-4">
-              © {new Date().getFullYear()} Pedro Silva Digital. Todos os direitos reservados.
+              © {new Date().getFullYear()} Pedro Silva. Todos os direitos reservados.
             </p>
             
             {/* Back to Top Button */}
